@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Almostengr.Greenhouse.Api", "Almostengr.Greenhouse.Api\Almostengr.Greenhouse.Api.csproj", "{BF66B47A-4C79-4F8B-B6B7-A46091A83608}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Almostengr.Greenhouse.Scheduler", "Almostengr.Greenhouse.Scheduler\Almostengr.Greenhouse.Scheduler.csproj", "{DB64F956-E13F-438E-A89E-C3CD94FB1E32}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Almostengr.Greenhouse.Web", "Almostengr.Greenhouse.Web\Almostengr.Greenhouse.Web.csproj", "{00892682-43AF-4D06-AEA2-6DFAA907E466}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
