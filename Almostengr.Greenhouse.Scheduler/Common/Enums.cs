@@ -11,6 +11,7 @@ namespace Almostengr.Greenhouse.Scheduler.Common
         FanOne = 14,
         FanTwo = 15,
         WaterOne = 17,
-        WaterTwo = 18
+        WaterTwo = 18,
+        HeaterOne = 5,
     }
 }

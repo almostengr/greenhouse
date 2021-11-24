@@ -13,58 +13,57 @@ namespace Almostengr.Greenhouse.Scheduler.Workers
     {
         private readonly ILogger<TemperatureWorker> _logger;
         private readonly IThermometerSensor _thermomenterSensor;
-        private readonly ITwitterClient _twitterClient;
         private readonly IFanRelay _fanRelay;
+        private readonly IHeaterRelay _heaterRelay;
         private const double HIGH_TEMP_ALARM_C = 35; // 95 F
         private const double LOW_TEMP_ALARM_C = 7.22; // 45 F
-        private const double FAN_ON_TEMP_C = 29.44;  // 85 F
-        private const double FAN_OFF_TEMP_C = 26.66; // 80 F
+        private const double HIGH_TEMP_RANGE = 29.44; // 85 F
+        private const double LOW_TEMP_RANGE = 12.77; // 50 F
 
         public TemperatureWorker(ILogger<TemperatureWorker> logger, ITwitterClient twitterClient, AppSettings appSettings,
-            IThermometerSensor thermometerSensor, IFanRelay fanRelay) :
+            IThermometerSensor thermometerSensor, IFanRelay fanRelay, IHeaterRelay heaterRelay) :
             base(logger, twitterClient, appSettings)
         {
             _logger = logger;
             _thermomenterSensor = thermometerSensor;
-            _twitterClient = twitterClient;
             _fanRelay = fanRelay;
+            _heaterRelay = heaterRelay;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            int minutesDelay = 30;
-            int coolingStage = 0;
-
+            int counter = 0;
             while (!stoppingToken.IsCancellationRequested)
             {
                 double currentTemp = await _thermomenterSensor.GetTemperatureCelsiusAsync();
+                _logger.LogInformation($"Current temperature is {currentTemp} C");
 
                 if (currentTemp >= HIGH_TEMP_ALARM_C || currentTemp <= LOW_TEMP_ALARM_C)
                 {
                     await PostAlarmTweetAsync($"Temperature is {currentTemp} degrees Celsius. Please check the greenhouse.");
                 }
 
-                if (currentTemp > FAN_ON_TEMP_C)
+                if (currentTemp > HIGH_TEMP_RANGE)
                 {
                     _fanRelay.TurnOnFan1();
-                    minutesDelay = 15;
-
-                    if (coolingStage > 1)
-                    {
-                        _fanRelay.TurnOnFan2(); // second stage cooling
-                    }
-
-                    coolingStage++;
+                    _heaterRelay.TurnOff1();
+                }
+                else if (currentTemp < LOW_TEMP_RANGE)
+                {
+                    _fanRelay.TurnOffFan1();
+                    _heaterRelay.TurnOn1();
                 }
                 else
                 {
                     _fanRelay.TurnOffFan1();
-                    _fanRelay.TurnOffFan2();
-                    coolingStage = 0;
-                    minutesDelay = 30;
+                    _heaterRelay.TurnOff1();
                 }
 
-                await Task.Delay(TimeSpan.FromMinutes(minutesDelay), stoppingToken);
+                await PostTweetAsync($"Temperature is {currentTemp} C.");
+
+                counter++;
+
+                await Task.Delay(TimeSpan.FromMinutes(15), stoppingToken);
             }
         }
     }

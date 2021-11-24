@@ -52,6 +52,7 @@ namespace Almostengr.Greenhouse.Scheduler
                     // relays
                     services.AddSingleton<IWaterRelay, WaterRelay>();
                     services.AddSingleton<IFanRelay, FanRelay>();
+                    services.AddSingleton<IHeaterRelay, HeaterRelay>();
 
                     // sensors
                     services.AddSingleton<IThermometerSensor, Ds18b20Sensor>();
