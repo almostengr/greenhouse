@@ -15,24 +15,15 @@ namespace Almostengr.Greenhouse.Api.Relays
             OpenPins(gpio, PinMode.Output, new Int32[] { (Int32)GpioRelayPin.FanOne, (Int32)GpioRelayPin.FanTwo });
         }
 
-        public void TurnOnFan1()
+        public void TurnOn()
         {
             base.TurnOn(GpioRelayPin.FanOne);
         }
 
-        public void TurnOffFan1()
+        public void TurnOff()
         {
             base.TurnOff(GpioRelayPin.FanOne);
         }
 
-        public void TurnOnFan2()
-        {
-            base.TurnOn(GpioRelayPin.FanTwo);
-        }
-
-        public void TurnOffFan2()
-        {
-            base.TurnOff(GpioRelayPin.FanTwo);
-        }
     }
 }

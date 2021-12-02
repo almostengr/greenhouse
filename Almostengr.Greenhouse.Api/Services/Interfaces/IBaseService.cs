@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Almostengr.Greenhouse.Api.Services.Interfaces
 {
-    public interface IBaseService
+    public interface IBaseService<T> where T : class
     {
         // IUnitOfWork UnitOfWork { get; }
         Task<bool> SaveChangesAsync();

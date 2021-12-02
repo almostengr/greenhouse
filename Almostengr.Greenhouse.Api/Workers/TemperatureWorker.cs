@@ -44,18 +44,18 @@ namespace Almostengr.Greenhouse.Api.Workers
 
                 if (currentTemp.TemperatureF > await _systemSettingRepo.GetSettingValueAsDoubleAsync(SettingKey.CoolingTargetTemperatureF))
                 {
-                    _fanRelay.TurnOnFan1();
-                    _heaterRelay.TurnOff1();
+                    _fanRelay.TurnOn();
+                    _heaterRelay.TurnOff();
                 }
                 else if (currentTemp.TemperatureF < await _systemSettingRepo.GetSettingValueAsDoubleAsync(SettingKey.HeatingTargetTemperatureF))
                 {
-                    _fanRelay.TurnOffFan1();
-                    _heaterRelay.TurnOn1();
+                    _fanRelay.TurnOff();
+                    _heaterRelay.TurnOn();
                 }
                 else
                 {
-                    _fanRelay.TurnOffFan1();
-                    _heaterRelay.TurnOff1();
+                    _fanRelay.TurnOff();
+                    _heaterRelay.TurnOff();
                 }
 
                 await PostTweetAsync($"Temperature is {currentTemp} C.");

@@ -1,6 +1,5 @@
-using System.ComponentModel.DataAnnotations;
-using Almostengr.Greenhouse.Api.Common;
-using Almostengr.Greenhouse.Api.DataTransferObject;
+using System;
+using Almostengr.Greenhouse.Api.DataTransferObjects;
 
 namespace Almostengr.Greenhouse.Api.Models
 {
@@ -17,17 +16,12 @@ namespace Almostengr.Greenhouse.Api.Models
             HumidityUnit = dto.Properties[0].RelativeHumidity.UnitCode;
         }
 
-        [Required]
-        public TemperatureSource SourceId { get; set; }
+        public string SensorName { get; set; }
 
-        public string Location { get; set; }
-
-        [Required]
         public double? Degrees { get; set; }
 
-        [Required]
         public string TemperatureUnit { get; set; }
-        
+
         public double TemperatureF { get; set; }
 
         public double TemperatureC { get; set; }
@@ -35,5 +29,31 @@ namespace Almostengr.Greenhouse.Api.Models
         public double? Humidity { get; set; }
 
         public string HumidityUnit { get; set; }
+
+
+        public TemperatureDto ToDto()
+        {
+            return new TemperatureDto
+            {
+                TemperatureId = Id,
+                Created = Created,
+                TemperatureF = TemperatureF,
+                TemperatureC = TemperatureC,
+                Humidity = Humidity,
+                HumidityUnit = HumidityUnit,
+                SensorName = SensorName,
+            };
+        }
+
+        public void FromDto(TemperatureDto dto)
+        {
+            Id = dto.TemperatureId;
+            Created = DateTime.Now;
+            TemperatureF = dto.TemperatureF;
+            TemperatureC = dto.TemperatureC;
+            Humidity = dto.Humidity;
+            HumidityUnit = dto.HumidityUnit;
+            SensorName = dto.SensorName;
+        }
     }
 }

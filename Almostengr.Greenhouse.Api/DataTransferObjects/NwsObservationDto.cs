@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Almostengr.Greenhouse.Api.DataTransferObject
+namespace Almostengr.Greenhouse.Api.DataTransferObjects
 {
     public class NwsObservationDto
     {

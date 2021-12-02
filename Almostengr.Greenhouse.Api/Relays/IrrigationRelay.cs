@@ -15,24 +15,14 @@ namespace Almostengr.Greenhouse.Api.Relays
             OpenPins(gpio, PinMode.Output, new Int32[] { (Int32)GpioRelayPin.WaterOne, (Int32)GpioRelayPin.WaterTwo });
         }
 
-        public void TurnOffWater1()
+        public void TurnOffWater()
         {
             base.TurnOff(GpioRelayPin.WaterOne);
         }
 
-        public void TurnOffWater2()
-        {
-            base.TurnOff(GpioRelayPin.WaterTwo);
-        }
-
-        public void TurnOnWater1()
+        public void TurnOnWater()
         {
             base.TurnOn(GpioRelayPin.WaterOne);
-        }
-
-        public void TurnOnWater2()
-        {
-            base.TurnOn(GpioRelayPin.WaterTwo);
         }
 
     }

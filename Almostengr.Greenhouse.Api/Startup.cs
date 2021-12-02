@@ -45,7 +45,9 @@ namespace Almostengr.Greenhouse.Api
             services.AddSingleton<IHeaterRelay, HeaterRelay>();
 
             // sensors
-            services.AddSingleton<ITemperatureSensor, Ds18b20Sensor>();
+            // services.AddSingleton<ITemperatureSensor, Ds18b20Sensor>();
+            services.AddSingleton<ITemperatureSensor, MockTemperatureSensor>();
+            services.AddSingleton<IMoistureSensor, MockMoistureSensor>();
 
             // workers
             services.AddHostedService<TemperatureWorker>();

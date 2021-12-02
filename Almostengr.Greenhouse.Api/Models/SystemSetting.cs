@@ -8,5 +8,6 @@ namespace Almostengr.Greenhouse.Api.Models
         public SettingKey Key { get; set; }
         public string Value { get; set; }
         public DateTime Modified { get; set; }
+        
     }
 }

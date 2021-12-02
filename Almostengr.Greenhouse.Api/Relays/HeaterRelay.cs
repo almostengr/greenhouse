@@ -10,12 +10,12 @@ namespace Almostengr.Greenhouse.Api.Relays
         {
         }
 
-        public void TurnOff1()
+        public void TurnOff()
         {
             base.TurnOff(GpioRelayPin.HeaterOne);
         }
 
-        public void TurnOn1()
+        public void TurnOn()
         {
             base.TurnOn(GpioRelayPin.HeaterOne);
         }

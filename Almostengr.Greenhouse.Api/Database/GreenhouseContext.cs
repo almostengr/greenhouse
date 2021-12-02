@@ -9,7 +9,7 @@ namespace Almostengr.Greenhouse.Api.Database
         {
         }
 
-        public DbSet<NwsWeather> NwsWeather { get; set; }
+        public DbSet<Moisture> Moistures { get; set; }
         public DbSet<SystemSetting> SystemSettings { get; set; }
         public DbSet<Temperature> Temperatures { get; set; }
     }

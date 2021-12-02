@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Almostengr.Greenhouse.Api.DataTransferObject;
 using Microsoft.Extensions.Logging;
 using Tweetinvi;
 
@@ -26,38 +25,38 @@ namespace Almostengr.Greenhouse.Api.Workers
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                foreach (var weatherStationUrl in weatherStationIds)
-                {
-                    var observation = await HttpGetAsync<NwsObservationDto>(_httpClient, weatherStationUrl);
+                // foreach (var weatherStationUrl in weatherStationIds)
+                // {
+                //     var observation = await HttpGetAsync<NwsObservationDto>(_httpClient, weatherStationUrl);
 
-                    if (observation == null)
-                    {
-                        _logger.LogError($"Failed to get weather data from {weatherStationUrl}");
-                        continue;
-                    }
+                //     if (observation == null)
+                //     {
+                //         _logger.LogError($"Failed to get weather data from {weatherStationUrl}");
+                //         continue;
+                //     }
 
-                    try
-                    {
-                        var temperature = new Temperature(observation);
-                        await _temperatureRepository.AddAsync(temperature);
-                        await _temperatureRepository.SaveAsync();
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, ex.Message);
-                    }
+                //     try
+                //     {
+                //         var temperature = new Temperature(observation);
+                //         await _temperatureRepository.AddAsync(temperature);
+                //         await _temperatureRepository.SaveAsync();
+                //     }
+                //     catch (Exception ex)
+                //     {
+                //         _logger.LogError(ex, ex.Message);
+                //     }
 
-                    try
-                    {
-                        var precipitation = new Precipitation(observation);
-                        await _precipitationRepository.AddAsync(precipitation);
-                        await _precipitationRepository.SaveAsync();
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, ex.Message);
-                    }
-                }
+                //     try
+                //     {
+                //         var precipitation = new Precipitation(observation);
+                //         await _precipitationRepository.AddAsync(precipitation);
+                //         await _precipitationRepository.SaveAsync();
+                //     }
+                //     catch (Exception ex)
+                //     {
+                //         _logger.LogError(ex, ex.Message);
+                //     }
+                // }
 
                 await Task.Delay(TimeSpan.FromHours(1), stoppingToken);
             }
