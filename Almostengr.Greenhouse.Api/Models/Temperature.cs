@@ -31,29 +31,5 @@ namespace Almostengr.Greenhouse.Api.Models
         public string HumidityUnit { get; set; }
 
 
-        public TemperatureDto ToDto()
-        {
-            return new TemperatureDto
-            {
-                TemperatureId = Id,
-                Created = Created,
-                TemperatureF = TemperatureF,
-                TemperatureC = TemperatureC,
-                Humidity = Humidity,
-                HumidityUnit = HumidityUnit,
-                SensorName = SensorName,
-            };
-        }
-
-        public void FromDto(TemperatureDto dto)
-        {
-            Id = dto.TemperatureId;
-            Created = DateTime.Now;
-            TemperatureF = dto.TemperatureF;
-            TemperatureC = dto.TemperatureC;
-            Humidity = dto.Humidity;
-            HumidityUnit = dto.HumidityUnit;
-            SensorName = dto.SensorName;
-        }
     }
 }

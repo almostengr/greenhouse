@@ -2,11 +2,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Almostengr.Greenhouse.Api.Common;
 using Almostengr.Greenhouse.Api.Models;
-using Almostengr.Greenhouse.Api.Services.Interfaces;
 
 namespace Almostengr.Greenhouse.Api.Repository.Interfaces
 {
-    public interface ISystemSettingRepository : ISystemSettingService
+    public interface ISystemSettingRepository : IBaseRepository<SystemSetting>
     {
         Task<SystemSetting> SetSettingAsync(SettingKey key, string value);
         Task<SystemSetting> GetSettingAsync(SettingKey key);

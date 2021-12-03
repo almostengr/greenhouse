@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Almostengr.Greenhouse.Api.Controllers.Interfaces;
-using Almostengr.Greenhouse.Api.DataTransferObjects;
 using Almostengr.Greenhouse.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,14 +19,14 @@ namespace Almostengr.Greehouse.Api.Controllers
         [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
-            var temperatures = await _temperatureService.GetAllAsync<TemperatureDto>();
+            var temperatures = await _temperatureService.GetTemperaturesAsync();
             return Ok(temperatures);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var temperature = await _temperatureService.GetByIdAsync<TemperatureDto>(id);
+            var temperature = await _temperatureService.GetTemperatureByIdAsync(id);
             
             if (temperature == null)
             {
@@ -37,33 +36,10 @@ namespace Almostengr.Greehouse.Api.Controllers
             return Ok(temperature);
         }
 
-        public async Task<IActionResult> GetLast1Day()
+        [HttpGet("lastdays/{numberOfDays:int}")]
+        public async Task<IActionResult> GetLastNumberOfDays(int numberOfDays)
         {
-            var temperatures = await _temperatureService.GetAllAsync<TemperatureDto>();
-            return Ok(temperatures);
-        }
-
-        public async Task<IActionResult> GetLast7Days()
-        {
-            var temperatures = await _temperatureService.GetAllAsync<TemperatureDto>();
-            return Ok(temperatures);
-        }
-
-        public async Task<IActionResult> GetLast90Days()
-        {
-            var temperatures = await _temperatureService.GetAllAsync<TemperatureDto>();
-            return Ok(temperatures);
-        }
-
-        public async Task<IActionResult> GetLast30Days()
-        {
-            var temperatures = await _temperatureService.GetAllAsync<TemperatureDto>();
-            return Ok(temperatures);
-        }
-
-        public async Task<IActionResult> GetLast365Days()
-        {
-            var temperatures = await _temperatureService.GetAllAsync<TemperatureDto>();
+            var temperatures = await _temperatureService.GetReadingForPeriodOfDaysAsync(numberOfDays);
             return Ok(temperatures);
         }
     }

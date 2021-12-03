@@ -10,3 +10,7 @@ integrate with Twitter to post status updates with temperature data and more.
 ## Parts Used 
 
 No parts have been purchased at this time. Project is still in the development phase.
+
+## Programming References
+
+* https://mentormate.com/blog/service-and-repository-layer-interaction-in-c/

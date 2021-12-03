@@ -3,6 +3,7 @@ using Almostengr.Greenhouse.Api.Relays;
 using Almostengr.Greenhouse.Api.Relays.Interfaces;
 using Almostengr.Greenhouse.Api.Sensors;
 using Almostengr.Greenhouse.Api.Sensors.Interfaces;
+using Almostengr.Greenhouse.Api.Sensors.Mock;
 using Almostengr.Greenhouse.Api.Workers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

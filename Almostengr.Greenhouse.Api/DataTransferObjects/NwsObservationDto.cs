@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Almostengr.Greenhouse.Api.DataTransferObjects
 {
-    public class NwsObservationDto
+    public class NwsObservationDto : BaseDto
     {
         public List<NwsFeature> Features { get; set; }
     }
 
-    public class NwsObservationLatestDto
+    public class NwsObservationLatestDto : BaseDto
     {
         public List<NwsProperties> Properties { get; set; }
     }

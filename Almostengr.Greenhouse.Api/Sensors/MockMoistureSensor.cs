@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Almostengr.Greenhouse.Api.DataTransferObjects;
 using Almostengr.Greenhouse.Api.Sensors.Interfaces;
 
-namespace Almostengr.Greenhouse.Api.Sensors
+namespace Almostengr.Greenhouse.Api.Sensors.Mock
 {
     public class MockMoistureSensor : IMoistureSensor
     {

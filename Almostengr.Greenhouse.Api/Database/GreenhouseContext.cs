@@ -5,7 +5,7 @@ namespace Almostengr.Greenhouse.Api.Database
 {
     public class GreenhouseContext : DbContext
     {
-        public GreenhouseContext(DbContextOptions options) : base(options)
+        public GreenhouseContext(DbContextOptions<GreenhouseContext> options) : base(options)
         {
         }
 

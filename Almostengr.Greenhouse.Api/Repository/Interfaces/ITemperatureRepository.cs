@@ -1,9 +1,12 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Almostengr.Greenhouse.Api.DataTransferObjects;
 using Almostengr.Greenhouse.Api.Models;
-using Almostengr.Greenhouse.Api.Services.Interfaces;
 
 namespace Almostengr.Greenhouse.Api.Repository.Interfaces
 {
-    public interface ITemperatureRepository : ITemperatureService
+    public interface ITemperatureRepository : IBaseRepository<Temperature>
     {
+        Task<List<TemperatureDto>> GetReadingForPeriodOfDaysAsync(int days);
     }
 }

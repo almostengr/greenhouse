@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Almostengr.Greenhouse.Api.Controllers.Interfaces
 {
-    public interface ITemperatureController : IBaseController
+    public interface IMoistureController : IBaseController
     {
         Task<IActionResult> GetLastNumberOfDays(int numberOfDays);
-    }    
+    }
 }

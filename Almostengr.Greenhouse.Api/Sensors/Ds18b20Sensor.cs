@@ -7,7 +7,7 @@ namespace Almostengr.Greenhouse.Api.Sensors
 {
     public class Ds18b20Sensor : ITemperatureSensor
     {
-        public Task<TemperatureDto> GetTemperatureAsync()
+        public async Task<TemperatureDto> GetTemperatureAsync()
         {
             throw new System.NotImplementedException();
         }

@@ -2,7 +2,7 @@ using System;
 
 namespace Almostengr.Greenhouse.Api.DataTransferObjects
 {
-    public class MoistureDto
+    public class MoistureDto : BaseDto
     {
         public int MoistureId { get; set; }
         public int MoistureLevel { get; set; }
