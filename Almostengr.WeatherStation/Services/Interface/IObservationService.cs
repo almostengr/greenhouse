@@ -9,7 +9,6 @@ namespace Almostengr.WeatherStation.Services.Interface
         Task<ObservationDto> GetByObservationIdAsync(int observationId);
         Task<IList<ObservationDto>> GetAllObservationsAsync();
         Task CreateObservationAsync(ObservationDto observation);
-        // Task<ObservationDto> CreateObservationAsync(ObservationDto observation);
         Task<ObservationDto> GetLatestObservationAsync();
         Task DeleteOldObservationsAsync(int retentionDays);
     }

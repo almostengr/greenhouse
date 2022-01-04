@@ -20,16 +20,12 @@ namespace Almostengr.WeatherStation.Services
             if (retentionDays > 0)
             {
                 await _repository.DeleteOldObservationsAsync(retentionDays);
-                await _repository.SaveChangesAsync();
             }
         }
 
         public async Task CreateObservationAsync(ObservationDto observation)
         {
             await _repository.CreateObservationAsync(observation);
-            // var result = await _repository.CreateObservationAsync(observation);
-            // return result;
-            await _repository.SaveChangesAsync();
         }
 
         public async Task<IList<ObservationDto>> GetAllObservationsAsync()

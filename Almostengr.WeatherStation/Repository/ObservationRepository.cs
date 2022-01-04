@@ -27,6 +27,7 @@ namespace Almostengr.WeatherStation.Repository
             
             List<Observation> observations = await _dbContext.Observations.Where(o => o.Created < cutoffDate).ToListAsync();
             _dbContext.Observations.RemoveRange(observations);
+            await _dbContext.SaveChangesAsync();
 
             _logger.LogInformation($"Deleted {observations.Count} observations");
         }
@@ -42,8 +43,9 @@ namespace Almostengr.WeatherStation.Repository
             observation.Created = DateTime.Now;
 
             var newObservation = await _dbContext.Observations.AddAsync(observation);
+            await _dbContext.SaveChangesAsync();
 
-            _logger.LogInformation($"Created observation {newObservation.Entity.ObservationId}");
+            _logger.LogInformation($"Created observationId {newObservation.Entity.ObservationId}");
         }
 
         public async Task<List<ObservationDto>> GetAllObservationsAsync()
