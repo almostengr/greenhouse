@@ -1,0 +1,12 @@
+[Unit]
+Description=Weather Station
+Documentation=https://thealmostengineer.com/
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/home/pi/weather-station/Almostengr.WeatherStation
+User=pi
+
+[Install]
+WantedBy=multi-user.target
