@@ -42,8 +42,8 @@ namespace Almostengr.WeatherStation.Models
             return o => new ObservationDto
             {
                 ObservationId = o.ObservationId,
-                TemperatureC = o.TemperatureC,
-                TemperatureF = ((o.TemperatureC * 1.8) + 32),
+                TemperatureC = Math.Round(o.TemperatureC, Constants.MAX_DECIMAL_PLACES),
+                TemperatureF = Math.Round(((o.TemperatureC * 1.8) + 32), Constants.MAX_DECIMAL_PLACES),
                 Humidity = o.Humidity,
                 Pressure = o.Pressure,
                 Created = o.Created
