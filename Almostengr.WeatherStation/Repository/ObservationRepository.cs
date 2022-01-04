@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Almostengr.WeatherStation.Database;
+using Almostengr.WeatherStation.Repository;
 using Almostengr.WeatherStation.DataTransferObjects;
 using Almostengr.WeatherStation.Models;
 using Almostengr.WeatherStation.Repository.Interface;

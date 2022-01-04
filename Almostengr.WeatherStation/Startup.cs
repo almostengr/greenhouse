@@ -1,4 +1,3 @@
-using Almostengr.WeatherStation.Database;
 using Almostengr.WeatherStation.Repository;
 using Almostengr.WeatherStation.Repository.Interface;
 using Almostengr.WeatherStation.Sensors;

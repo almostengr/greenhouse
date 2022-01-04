@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Almostengr.WeatherStation.Database;
+using Almostengr.WeatherStation.Repository;
 using Almostengr.WeatherStation.Repository.Interface;
 
 namespace Almostengr.WeatherStation.Repository

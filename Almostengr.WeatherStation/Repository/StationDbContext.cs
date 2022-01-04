@@ -1,7 +1,7 @@
 using Almostengr.WeatherStation.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Almostengr.WeatherStation.Database
+namespace Almostengr.WeatherStation.Repository
 {
     public class StationDbContext : DbContext
     {
