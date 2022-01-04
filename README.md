@@ -63,3 +63,4 @@ The Twitter Access Secret. To get a secret, visit the Twitter Developers website
 
 * https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
 * https://docs.microsoft.com/en-us/ef/core/cli/dotnet
+* https://github.com/dotnet/iot/tree/main/src/devices/OneWire
