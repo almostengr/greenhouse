@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Almostengr.WeatherStation.Services.Interface;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Almostengr.WeatherStation.Workers
 {
@@ -10,17 +11,16 @@ namespace Almostengr.WeatherStation.Workers
         public readonly AppSettings _appSettings;
         private readonly IObservationService _observationService;
 
-        public TwitterWorker(AppSettings appSettings, IObservationService observationService)
+        public TwitterWorker(AppSettings appSettings, IServiceScopeFactory factory)
         {
             _appSettings = appSettings;
-            _observationService = observationService;
+            _observationService = factory.CreateScope().ServiceProvider.GetRequiredService<IObservationService>();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while(!stoppingToken.IsCancellationRequested)
             {
-                // read latest row from the database
                 var observationDto = await _observationService.GetLatestObservationAsync();
 
                 // post to twitter

@@ -21,9 +21,9 @@ namespace Almostengr.WeatherStation.Repository
 
         public async Task DeleteOldObservationsAsync(int retentionDays)
         {
-            var cutoffDate = DateTime.Now.AddDays(-retentionDays);
+            DateTime cutoffDate = DateTime.Now.AddDays(-retentionDays);
             
-            var observations = await _dbContext.Observations.Where(o => o.Created < cutoffDate).ToListAsync();
+            List<Observation> observations = await _dbContext.Observations.Where(o => o.Created < cutoffDate).ToListAsync();
             _dbContext.Observations.RemoveRange(observations);
         }
 

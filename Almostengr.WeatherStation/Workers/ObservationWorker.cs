@@ -1,9 +1,9 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Almostengr.WeatherStation.DataTransferObjects;
 using Almostengr.WeatherStation.Sensors.Interface;
 using Almostengr.WeatherStation.Services.Interface;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Almostengr.WeatherStation.Workers
 {
@@ -13,32 +13,22 @@ namespace Almostengr.WeatherStation.Workers
         private readonly IObservationService _observationService;
         private readonly ISensor _sensor;
 
-        public ObservationWorker(AppSettings appSettings, IObservationService observationService,
-            ISensor sensor)
+        public ObservationWorker(AppSettings appSettings, IServiceScopeFactory factory)
         {
             _appSettings = appSettings;
-            _observationService = observationService;
-            _sensor = sensor;
+            _observationService = factory.CreateScope().ServiceProvider.GetRequiredService<IObservationService>();
+            _sensor = factory.CreateScope().ServiceProvider.GetRequiredService<ISensor>();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while(!stoppingToken.IsCancellationRequested)
             {
-                // read from the sensor 
-                var data = await _sensor.GetSensorDataAsync();
+                var observationDto = await _sensor.GetSensorDataAsync();
 
-                // create a new observation with sensor Data
-                ObservationDto observationDto = new();
-
-                // write to the database
                 await _observationService.CreateObservationAsync(observationDto);
 
-                // clean old observations
-                if (_appSettings.RetentionDays > 0)
-                {
-                    await _observationService.DeleteOldObservationsAsync(_appSettings.RetentionDays);
-                }
+                await _observationService.DeleteOldObservationsAsync(_appSettings.RetentionDays);
 
                 await Task.Delay(TimeSpan.FromMinutes(_appSettings.ReadSensorInterval), stoppingToken);
             }

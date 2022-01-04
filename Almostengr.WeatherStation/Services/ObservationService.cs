@@ -17,8 +17,11 @@ namespace Almostengr.WeatherStation.Services
 
         public async Task DeleteOldObservationsAsync(int retentionDays)
         {
-            await _repository.DeleteOldObservationsAsync(retentionDays);
-            await _repository.SaveChangesAsync();
+            if (retentionDays > 0)
+            {
+                await _repository.DeleteOldObservationsAsync(retentionDays);
+                await _repository.SaveChangesAsync();
+            }
         }
 
         public async Task CreateObservationAsync(ObservationDto observation)

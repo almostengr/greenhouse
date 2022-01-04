@@ -18,7 +18,7 @@ namespace Almostengr.WeatherStation.Models
             }
 
             ObservationId = observationDto.ObservationId;
-            TemperatureC = observationDto.TemperatureC == null ? observationDto.TemperatureF : observationDto.TemperatureC;
+            TemperatureC = observationDto.TemperatureC;
             Humidity = observationDto.Humidity;
             Pressure = observationDto.Pressure;
             Created = observationDto.Created;
@@ -29,7 +29,7 @@ namespace Almostengr.WeatherStation.Models
         public int ObservationId { get; set; }
 
         [Required]
-        public double? TemperatureC { get; set; }
+        public double TemperatureC { get; set; }
 
         public double? Humidity { get; set; }
         public double? Pressure { get; set; }
@@ -43,6 +43,7 @@ namespace Almostengr.WeatherStation.Models
             {
                 ObservationId = o.ObservationId,
                 TemperatureC = o.TemperatureC,
+                TemperatureF = ((o.TemperatureC * 1.8) + 32),
                 Humidity = o.Humidity,
                 Pressure = o.Pressure,
                 Created = o.Created

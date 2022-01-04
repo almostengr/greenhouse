@@ -6,7 +6,7 @@ namespace Almostengr.WeatherStation
         public int ReadSensorInterval { get; set; } = 30;
         public int RetentionDays { get; set; } = 1825;
         public int PortNumber { get; set; } = 8080;
-        public TwitterSettings Twitter { get; set; }
+        public TwitterSettings Twitter { get; set; } = null;
     }
 
     public class TwitterSettings

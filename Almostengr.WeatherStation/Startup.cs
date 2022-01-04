@@ -1,6 +1,8 @@
 using Almostengr.WeatherStation.Database;
 using Almostengr.WeatherStation.Repository;
 using Almostengr.WeatherStation.Repository.Interface;
+using Almostengr.WeatherStation.Sensors;
+using Almostengr.WeatherStation.Sensors.Interface;
 using Almostengr.WeatherStation.Services;
 using Almostengr.WeatherStation.Services.Interface;
 using Almostengr.WeatherStation.Workers;
@@ -36,40 +38,43 @@ namespace Almostengr.WeatherStation
             AppSettings appSettings = Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
             services.AddSingleton(appSettings);
 
-            // repositories
-            
-            services.AddScoped<IObservationRepository, ObservationRepository>();
+            // workers ///////////////////////////////////////////////////////////////////////////////////////
 
-            // services
-
-            services.AddScoped<IObservationService, ObservationService>();
-
-            // sensors
-            // services.AddSingleton<ISensor, Sensor>();
-
-            // workers
-            
             services.AddHostedService<ObservationWorker>();
 
-            if (string.IsNullOrEmpty(appSettings.Twitter.ConsumerKey) == false &&
+            if (appSettings.Twitter != null)
+            {
+                if (string.IsNullOrEmpty(appSettings.Twitter.ConsumerKey) == false &&
                 string.IsNullOrEmpty(appSettings.Twitter.ConsumerSecret) == false &&
                 string.IsNullOrEmpty(appSettings.Twitter.AccessToken) == false &&
                 string.IsNullOrEmpty(appSettings.Twitter.AccessSecret) == false)
-            {
-                services.AddSingleton<ITwitterClient, TwitterClient>(tc =>
-                    new TwitterClient(
-                        appSettings.Twitter.ConsumerKey,
-                        appSettings.Twitter.ConsumerSecret,
-                        appSettings.Twitter.AccessToken,
-                        appSettings.Twitter.AccessSecret
-                    ));
+                {
+                    services.AddSingleton<ITwitterClient, TwitterClient>(tc =>
+                        new TwitterClient(
+                            appSettings.Twitter.ConsumerKey,
+                            appSettings.Twitter.ConsumerSecret,
+                            appSettings.Twitter.AccessToken,
+                            appSettings.Twitter.AccessSecret
+                        ));
 
-                services.AddHostedService<TwitterWorker>();
+                    services.AddHostedService<TwitterWorker>();
+                }
             }
 
-            // database
-            services.AddDbContext<StationDbContext>(options => options.UseSqlite($"Data Source={appSettings.DatabaseFile}"));
+            // repositories //////////////////////////////////////////////////////////////////////////////////
 
+            services.AddScoped<IObservationRepository, ObservationRepository>();
+
+            // services //////////////////////////////////////////////////////////////////////////////////////
+
+            services.AddScoped<IObservationService, ObservationService>();
+
+            // sensors ///////////////////////////////////////////////////////////////////////////////////////
+
+            // services.AddSingleton<ISensor, Sensor>();
+            services.AddScoped<ISensor, MockSensor>();
+
+            services.AddDbContext<StationDbContext>(options => options.UseSqlite($"Data Source={appSettings.DatabaseFile}"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
