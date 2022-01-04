@@ -16,6 +16,13 @@ the weather data that is provided by the National Weather Service can be used, b
 can be significantly different from where those readings take place (usually at airports) and where the 
 plants are actuatlly growing (at your house).
 
+## System Requirements
+
+* Sqlite3
+* Internet access
+* Twitter Developer account
+* Raspberry Pi with connected sensor
+
 ## Application Configuration
 
 All of the configuration for the application is located in the appsettings.json file. 
