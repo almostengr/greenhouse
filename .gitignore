@@ -455,4 +455,4 @@ $RECYCLE.BIN/
 
 ## additional files
 *.db*
-
+*appsettings.json
