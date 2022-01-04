@@ -5,11 +5,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Almostengr.WeatherStation.Controllers
 {
-    public class ObservationController : BaseController
+
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ObservationController : ControllerBase
     {
         private readonly IObservationService _service;
 
-        public ObservationController(ILogger<ObservationController> logger, IObservationService service) : base(logger)
+        public ObservationController(ILogger<ObservationController> logger, IObservationService service)
         {
             _service = service;
         }
