@@ -7,7 +7,7 @@ namespace Almostengr.WeatherStation.Controllers
 {
 
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]s")]
     public class ObservationController : ControllerBase
     {
         private readonly IObservationService _service;
