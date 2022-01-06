@@ -16,7 +16,7 @@ namespace Almostengr.WeatherStation.Api.Sensors
             {
                 TemperatureC = random.Next(-10, 40),
                 HumidityPct = random.Next(0, 100),
-                PressureMb = random.Next(0, 1000),
+                PressureMb = random.Next(500, 1500),
             };
         }
     }
