@@ -5,7 +5,7 @@ Documentation=https://thealmostengineer.com/
 [Service]
 Type=simple
 Restart=always
-ExecStart=/home/pi/weather-station/Almostengr.WeatherStation
+ExecStart=/home/pi/weather-station/Almostengr.WeatherStation.Api
 User=pi
 
 [Install]
