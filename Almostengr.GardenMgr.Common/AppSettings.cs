@@ -16,7 +16,6 @@ namespace Almostengr.GardenMgr.Common
     public class WeatherSettings
     {
         public int ReadSensorInterval { get; set; } = 30;
-        public int PortNumber {get;set;} = 8080;
     }
 
     public class TwitterSettings
@@ -31,7 +30,6 @@ namespace Almostengr.GardenMgr.Common
     public class IrrigationSettings
     {
         public List<IrrigationZone> Zones { get; set; } = null;
-        public int PortNumber { get; set; } = 8081;
     }
 
     public class IrrigationZone
