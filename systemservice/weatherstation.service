@@ -1,11 +1,11 @@
 [Unit]
-Description=Weather Station
+Description=Garden Manager
 Documentation=https://thealmostengineer.com/
 
 [Service]
 Type=simple
 Restart=always
-ExecStart=/home/pi/weather-station/Almostengr.WeatherStation.Api
+ExecStart=/home/pi/greenhouse/Almostengr.GardenMgr.Api
 User=pi
 
 [Install]
