@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-# Greenhouse Automation
-
-## Purpose
-
-The purpose of this project is to automate a greenhouse with Raspberry Pi and C#. This application 
-is a .NET 5 worker service that is designed to have sensors connected that provide information for the 
-application to make its own decisions about the green house and growing environment. This project will 
-integrate with Twitter to post status updates with temperature data and more.
-
-## Parts Used 
-
-No parts have been purchased at this time. Project is still in the development phase.
-
-## Programming References
-
-* https://mentormate.com/blog/service-and-repository-layer-interaction-in-c/
-=======
 # Weather Station
 
 Weather station that logs data and posts to Twitter
@@ -82,4 +64,3 @@ The Twitter Access Secret. To get a secret, visit the Twitter Developers website
 * https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
 * https://docs.microsoft.com/en-us/ef/core/cli/dotnet
 * https://github.com/dotnet/iot/tree/main/src/devices/OneWire
->>>>>>> 3a724b60b5fcb31ae7b012396fa94e71c9be66da
