@@ -22,6 +22,19 @@
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
-        }
+        },
+        {
+            "label": "Tag Release",
+            "command" : "git",
+            "type": "shell",
+            "args": [
+                "tag",
+                "-a",
+                "\"v$(date +%Y.%m.%d)\"",
+                "-m",
+                "\"version $(date +%Y.%m.%d)\""
+            ],
+            // "dependsOn": ["Publish release"],
+        },
     ]
 }
