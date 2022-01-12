@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.13"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Almostengr.WeatherStation.Api\Almostengr.WeatherStation.Api.csproj"/>
+  </ItemGroup>
+</Project>

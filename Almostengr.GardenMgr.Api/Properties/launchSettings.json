@@ -4,8 +4,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:48022",
-      "sslPort": 44363
+      "applicationUrl": "http://localhost:26801",
+      "sslPort": 44364
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Almostengr.GardenIrrigation.Api": {
+    "Almostengr.GardenMgr.Api": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

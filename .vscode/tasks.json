@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
-            "command": "dotnet",
+            "label": "build solution",
             "type": "shell",
+            "command": "dotnet",
             "args": [
                 "build",
                 // Ask dotnet build to generate full paths for file names.
@@ -18,14 +18,10 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "presentation": {
-                "reveal": "silent"
-            },
-            "problemMatcher": "$msCompile"
         },
         {
             "label": "Tag Release",
-            "command" : "git",
+            "command": "git",
             "type": "shell",
             "args": [
                 "tag",
@@ -34,7 +30,8 @@
                 "-m",
                 "\"version $(date +%Y.%m.%d)\""
             ],
-            // "dependsOn": ["Publish release"],
-        },
+            "problemMatcher": [],
+            "group": "none"
+        }
     ]
 }
