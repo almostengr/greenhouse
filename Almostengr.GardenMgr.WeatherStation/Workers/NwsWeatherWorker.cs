@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Almostengr.Greenhouse.Api.Common;
-using Almostengr.Greenhouse.Api.DataTransferObject;
-using Almostengr.Greenhouse.Api.Models;
-using Almostengr.Greenhouse.Api.Repository.Interfaces;
+using Almostengr.GardenMgr.Common.Workers;
 using Microsoft.Extensions.Logging;
 using Tweetinvi;
 
@@ -33,8 +30,8 @@ namespace Almostengr.Greenhouse.Api.Workers
         //     _httpClient.BaseAddress = new Uri("");
         // }
 
-        // protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        // {
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
         //     List<string> weatherStationIds = new();
         //     weatherStationIds.Add("https://api.weather.gov/stations/KMGM/observations/latest");
 
@@ -75,6 +72,6 @@ namespace Almostengr.Greenhouse.Api.Workers
 
         //         await Task.Delay(TimeSpan.FromHours(1), stoppingToken);
         //     }
-        // }
+        }
     }
 }
