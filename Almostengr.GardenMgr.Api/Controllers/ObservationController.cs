@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Almostengr.WeatherStation.Api.Services.Interface;
+using Almostengr.GardenMgr.WeatherStation.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Almostengr.WeatherStation.Api.Controllers
+namespace Almostengr.GardenMgr.WeatherStation.Controllers
 {
 
     [ApiController]
@@ -24,7 +24,7 @@ namespace Almostengr.WeatherStation.Api.Controllers
 
             if (result == null)
             {
-                return NotFound();
+                return NotFound($"Observation with id {observationId} not found");
             }
 
             return Ok(result);
