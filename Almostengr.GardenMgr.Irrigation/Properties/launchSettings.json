@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Almostengr.GardenMgr.Irrigation.Api": {
+    "Almostengr.GardenMgr.Irrigation": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

@@ -1,40 +1,73 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Irrigation.Api.Services;
-using Almostengr.WeatherStation.Api;
-using Microsoft.Extensions.Hosting;
+using Almostengr.GardenMgr.Common.Workers;
+using Almostengr.GardenMgr.Irrigation.Relays;
+using Almostengr.Greenhouse.Api.Sensors.Interfaces;
+using Microsoft.Extensions.Logging;
 
-namespace Almostengr.GardenMgr.Irrigation.Api.Workers
+namespace Almostengr.GardenMgr.Irrigation.Workers
 {
-    public class IrrigationWorker : BackgroundService
+    public class IrrigationWorker : BaseWorker
     {
-        private readonly IIrrigationService _service;
-        private readonly AppSettings _appSettings;
+        private readonly IMoistureSensor _moistureSensor;
+        private readonly IIrrigationRelay _irrigationRelay;
 
-        public IrrigationWorker(IIrrigationService service, AppSettings appSettings)
+        public IrrigationWorker(ILogger<BaseWorker> logger, IMoistureSensor moistureSensor, IIrrigationRelay irrigationRelay)
         {
-            _service = service;
-            _appSettings = appSettings;
+            _moistureSensor = moistureSensor;
+            _irrigationRelay = irrigationRelay;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
+            while (!cancellationToken.IsCancellationRequested)
             {
-                foreach(var zone in _appSettings.Irrigation.Zones)
+                int timeDelay = 30;
+
+                // check water tank level
+
+                // if water tank level is low, send tweet
+
+                // check moisture level
+                var moistureReading = await _moistureSensor.IsSoilWet();
+
+                // if moisture level is low and water tank level is not low, turn on water pump
+                // run pump for 30 seconds
+                // send tweet
+                if (moistureReading.MoistureLevel < 100)
                 {
-                    // check zone sensor for moisture
-
-                    // if moisture is low, check the water tank level
-
-                    // if water tank level is above empty, then irrigate
-
-                    // if water tank is empty, send alert to user
+                    _irrigationRelay.TurnOnWater();
+                    await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
+                }
+                else
+                {
+                    _irrigationRelay.TurnOffWater();
+                    await Task.Delay(TimeSpan.FromMinutes(timeDelay), cancellationToken);
                 }
 
-                await Task.Delay(TimeSpan.FromMinutes(30), stoppingToken);
+
+
             }
+
+
+            // while (!stoppingToken.IsCancellationRequested)
+            // {
+            //     foreach(var zone in _appSettings.Irrigation.Zones)
+            //     {
+            //         // check zone sensor for moisture
+
+            //         // if moisture is low, check the water tank level
+
+            //         // if water tank level is above empty, then irrigate
+
+            //         // if water tank is empty, send alert to user
+            //     }
+
+            //     await Task.Delay(TimeSpan.FromMinutes(30), stoppingToken);
+            // }
         }
+
+
     }
 }

@@ -1,10 +1,15 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Almostengr.GardenMgr.Common.Models;
 
-namespace Almostengr.GardenMgr.Irrigation.Api.DataTransfer
+namespace Almostengr.GardenMgr.Irrigation.DataTransfer
 {
-    public class IrrigationDto
+    public class PlantWateringDto
     {
+        public PlantWateringDto(PlantWatering plantWatering)
+        {
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -15,5 +20,10 @@ namespace Almostengr.GardenMgr.Irrigation.Api.DataTransfer
 
         [Required]
         public int ZoneId { get; set; }
+
+        internal PlantWatering ToPlantWatering()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
