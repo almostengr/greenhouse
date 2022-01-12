@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Almostengr.WeatherStation.Api
+namespace Almostengr.GardenMgr.Common
 {
     public class AppSettings
     {

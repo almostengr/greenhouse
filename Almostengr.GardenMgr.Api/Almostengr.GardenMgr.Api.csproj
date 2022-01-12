@@ -1,11 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
+    <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="5.0.1"/>
   </ItemGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\Almostengr.GardenMgr.Common\Almostengr.GardenMgr.Common.csproj"/>
+    <ProjectReference Include="..\Almostengr.GardenMgr.Irrigation\Almostengr.GardenMgr.Irrigation.csproj"/>
+    <ProjectReference Include="..\Almostengr.GardenMgr.WeatherStation\Almostengr.GardenMgr.WeatherStation.csproj"/>
+  </ItemGroup>
 </Project>
