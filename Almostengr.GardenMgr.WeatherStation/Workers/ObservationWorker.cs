@@ -1,12 +1,14 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Almostengr.WeatherStation.Api.Sensors.Interface;
-using Almostengr.WeatherStation.Api.Services.Interface;
+using Almostengr.GardenMgr.Common;
+using Almostengr.GardenMgr.Common.Workers;
+using Almostengr.GardenMgr.WeatherStation.Sensors.Interface;
+using Almostengr.GardenMgr.WeatherStation.Services.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Almostengr.WeatherStation.Api.Workers
+namespace Almostengr.GardenMgr.WeatherStation.Workers
 {
     public class ObservationWorker : BaseWorker
     {

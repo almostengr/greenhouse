@@ -1,7 +1,8 @@
 using System;
-using Almostengr.WeatherStation.Api.DataTransferObjects;
+using Almostengr.GardenMgr.Common.Models;
+using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
 
-namespace Almostengr.WeatherStation.Api.Models
+namespace Almostengr.GardenMgr.WeatherStation.Models
 {
     public static class ModelExtensions
     {

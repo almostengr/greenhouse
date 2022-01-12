@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Almostengr.WeatherStation.Api.DataTransferObjects;
+using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
 
-namespace Almostengr.WeatherStation.Api.Sensors.Interface
+namespace Almostengr.GardenMgr.WeatherStation.Sensors.Interface
 {
     public interface ISensor
     {

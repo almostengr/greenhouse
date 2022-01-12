@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using Almostengr.WeatherStation.Api.DataTransferObjects;
-using Almostengr.WeatherStation.Api.Sensors.Interface;
+using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
+using Almostengr.GardenMgr.WeatherStation.Sensors.Interface;
 
-namespace Almostengr.WeatherStation.Api.Sensors
+namespace Almostengr.GardenMgr.WeatherStation.Sensors
 {
     public class MockSensor : ISensor
     {

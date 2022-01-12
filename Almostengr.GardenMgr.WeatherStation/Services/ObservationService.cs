@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Almostengr.WeatherStation.Api.DataTransferObjects;
-using Almostengr.WeatherStation.Api.Models;
-using Almostengr.WeatherStation.Api.Repository.Interface;
-using Almostengr.WeatherStation.Api.Services.Interface;
+using Almostengr.GardenMgr.Common.Models;
+using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
+using Almostengr.GardenMgr.WeatherStation.Models;
+using Almostengr.GardenMgr.WeatherStation.Repository.Interface;
+using Almostengr.GardenMgr.WeatherStation.Services.Interface;
 using Microsoft.Extensions.Logging;
 
-namespace Almostengr.WeatherStation.Api.Services
+namespace Almostengr.GardenMgr.WeatherStation.Services
 {
     public class ObservationService : BaseService, IObservationService
     {
@@ -53,7 +54,8 @@ namespace Almostengr.WeatherStation.Api.Services
                     throw new ArgumentNullException(nameof(observationDto));
                 }
                 
-                Observation observation = new Observation(observationDto);
+                // Observation observation = new Observation(observationDto);
+                Observation observation = observationDto.ToObservation();
                 observation.Created = DateTime.Now;
 
                 await _repository.CreateObservationAsync(observation);

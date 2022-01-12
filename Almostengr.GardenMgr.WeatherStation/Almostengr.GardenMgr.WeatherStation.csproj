@@ -1,7 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+  <ItemGroup>
+    <ProjectReference Include="..\Almostengr.GardenMgr.Common\Almostengr.GardenMgr.Common.csproj" />
+    <ProjectReference Include="..\Almostengr.Common.Twitter\Almostengr.Common.Twitter.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Iot.Device.Bindings" Version="1.5.0" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
 </Project>

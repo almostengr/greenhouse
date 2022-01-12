@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using Almostengr.WeatherStation.Api.DataTransferObjects;
-using Almostengr.WeatherStation.Api.Sensors.Interface;
+using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
+using Almostengr.GardenMgr.WeatherStation.Sensors.Interface;
 using Iot.Device.OneWire;
 
-namespace Almostengr.WeatherStation.Api.Sensors
+namespace Almostengr.GardenMgr.WeatherStation.Sensors
 {
     public class DS18B20Sensor : ISensor
     {

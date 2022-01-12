@@ -2,20 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Almostengr.WeatherStation.Api.DataTransferObjects;
-using Almostengr.WeatherStation.Api.Models;
-using Almostengr.WeatherStation.Api.Repository.Interface;
+using Almostengr.GardenMgr.Common.Database;
+using Almostengr.GardenMgr.Common.Models;
+using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
+using Almostengr.GardenMgr.WeatherStation.Models;
+using Almostengr.GardenMgr.WeatherStation.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace Almostengr.WeatherStation.Api.Repository
+namespace Almostengr.GardenMgr.WeatherStation.Repository
 {
     public class ObservationRepository : BaseRepository, IObservationRepository
     {
-        private readonly StationDbContext _dbContext;
+        private readonly GardenDbContext _dbContext;
         private readonly ILogger<ObservationRepository> _logger;
 
-        public ObservationRepository(StationDbContext dbContext, ILogger<ObservationRepository> logger) : base(dbContext)
+        public ObservationRepository(GardenDbContext dbContext, ILogger<ObservationRepository> logger) : base(dbContext)
         {
             _dbContext = dbContext;
             _logger = logger;
