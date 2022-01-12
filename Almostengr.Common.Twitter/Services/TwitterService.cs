@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Tweetinvi;
@@ -21,6 +22,16 @@ namespace Almostengr.Common.Twitter.Services
             var response = await _twitterClient.Users.GetAuthenticatedUserAsync();
             _logger.LogInformation($"Authenticated to Twitter as {response.Name}");
             return response.Name;
+        }
+
+        public async Task<bool> PostAlarmTweetAsync(List<string> users, string tweet)
+        {
+            foreach (var user in users)
+            {
+                tweet = user + " " + tweet;
+            }
+
+            return await PostTweetAsync(tweet);
         }
 
         public async Task<bool> PostTweetAsync(string tweet, bool testing = false)
