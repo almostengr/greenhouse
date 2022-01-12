@@ -12,20 +12,20 @@ namespace Almostengr.WeatherStation.Api.Workers
     {
         public readonly AppSettings _appSettings;
         private readonly IObservationService _observationService;
-        private readonly ITwitterClient _twitter;
+        private readonly ITwitterClient _twitterClient;
         private readonly ILogger<TwitterWorker> _logger;
 
         public TwitterWorker(AppSettings appSettings, IServiceScopeFactory factory, ILogger<TwitterWorker> logger)
         {
             _appSettings = appSettings;
             _observationService = factory.CreateScope().ServiceProvider.GetRequiredService<IObservationService>();
-            _twitter = factory.CreateScope().ServiceProvider.GetRequiredService<ITwitterClient>();
+            _twitterClient = factory.CreateScope().ServiceProvider.GetRequiredService<ITwitterClient>();
             _logger = logger;
         }
 
         public override Task StartAsync(CancellationToken stoppingToken)
         {
-            var response = _twitter.Users.GetAuthenticatedUserAsync();
+            var response = _twitterClient.Users.GetAuthenticatedUserAsync();
             _logger.LogInformation($"Authenticated to Twitter as {response.Result.Name}");
             return base.StartAsync(stoppingToken);
         }
