@@ -7,7 +7,11 @@ namespace Almostengr.GardenMgr.WeatherStation.DataTransferObjects
         public static Observation ToObservation(this ObservationDto observationDto)
         {
             return new Observation{
-
+                ObservationId = observationDto.ObservationId,
+                TemperatureC = observationDto.TemperatureC,
+                HumidityPct = observationDto.HumidityPct,
+                PressureMb = observationDto.PressureMb,
+                Created = observationDto.Created
             };
         }
     }   

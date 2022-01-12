@@ -54,7 +54,6 @@ namespace Almostengr.GardenMgr.WeatherStation.Services
                     throw new ArgumentNullException(nameof(observationDto));
                 }
                 
-                // Observation observation = new Observation(observationDto);
                 Observation observation = observationDto.ToObservation();
                 observation.Created = DateTime.Now;
 
