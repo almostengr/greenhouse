@@ -20,22 +20,22 @@ namespace Almostengr.GardenMgr.Irrigation.Database
             _relay = relay;
         }
 
-        public async Task<List<PlantWateringDto>> GetIrrigations()
+        public async Task<List<PlantWateringDto>> GetPlantWaterings()
         {
             return await _context.PlantWaterings
                 .Select(i => new PlantWateringDto(i))
                 .ToListAsync();
         }
 
-        public async Task<PlantWateringDto> GetIrrigation(int id)
+        public async Task<PlantWateringDto> GetPlantWatering(int id)
         {
             return await _context.PlantWaterings
-                .Where(i => i.Id == id)
+                .Where(i => i.PlantWateringId == id)
                 .Select(i => new PlantWateringDto(i))
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<PlantWateringDto> CreateIrrigation(PlantWateringDto plantWateringDto)
+        public async Task<PlantWateringDto> CreatePlantWatering(PlantWateringDto plantWateringDto)
         {
             PlantWatering plantWatering = plantWateringDto.ToPlantWatering();
 

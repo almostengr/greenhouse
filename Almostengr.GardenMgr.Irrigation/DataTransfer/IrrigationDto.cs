@@ -1,11 +1,16 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Almostengr.GardenMgr.Common;
 using Almostengr.GardenMgr.Common.Models;
 
 namespace Almostengr.GardenMgr.Irrigation.DataTransfer
 {
-    public class PlantWateringDto
+    public class PlantWateringDto : DtoBase
     {
+        public PlantWateringDto()
+        {
+        }
+        
         public PlantWateringDto(PlantWatering plantWatering)
         {
         }

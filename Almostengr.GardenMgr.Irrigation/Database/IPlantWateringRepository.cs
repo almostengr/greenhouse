@@ -6,8 +6,8 @@ namespace Almostengr.GardenMgr.Irrigation.Database
 {
     public interface IPlantWateringRepository
     {
-        Task<List<PlantWateringDto>> GetIrrigations();
-        Task<PlantWateringDto> GetIrrigation(int id);
-        Task<PlantWateringDto> CreateIrrigation(PlantWateringDto irrigation);
+        Task<List<PlantWateringDto>> GetPlantWaterings();
+        Task<PlantWateringDto> GetPlantWatering(int id);
+        Task<PlantWateringDto> CreatePlantWatering(PlantWateringDto plantWateringDto);
     }
 }
