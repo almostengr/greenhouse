@@ -52,8 +52,8 @@ namespace Almostengr.GardenMgr.Irrigation.Services
 
         public void TurnOffWater(int valveGpioNumber, int pumpGpioNumber)
         {
-            _irrigationRelay.TurnOffPump(pumpGpioNumber);
             _irrigationRelay.TurnOffWater(valveGpioNumber);
+            _irrigationRelay.TurnOffPump(pumpGpioNumber);
         }
 
         public async Task WaterPlantsAsync(int zoneId, int valveGpioNumber, int pumpGpioNumber, double wateringTime)

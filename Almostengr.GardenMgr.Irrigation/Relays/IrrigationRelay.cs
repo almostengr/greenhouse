@@ -13,10 +13,10 @@ namespace Almostengr.GardenMgr.Irrigation.Relays
             _gpio = gpio;
             // OpenPins(gpio, PinMode.Output, new Int32[] { (Int32)GpioRelayPin.WaterOne, (Int32)GpioRelayPin.WaterTwo });
 
-            foreach(var zone in appSettings.Irrigation.Zones)
+            foreach (var zone in appSettings.Irrigation.Zones)
             {
                 OpenPin(gpio, PinMode.Output, zone.ValveGpioNumber);
-                
+
                 if (zone.PumpGpioNumber > 0)
                 {
                     OpenPin(gpio, PinMode.Output, zone.PumpGpioNumber);
@@ -35,13 +35,20 @@ namespace Almostengr.GardenMgr.Irrigation.Relays
             base.TurnOn(pin);
         }
 
-        public  void TurnOffPump(int pin)
+        public void TurnOffPump(int pin)
         {
-            base.TurnOff(pin);
+            if (pin > 0)
+            {
+                base.TurnOff(pin);
+            }
         }
+        
         public void TurnOnPump(int pin)
         {
-            base.TurnOn(pin);
+            if (pin > 0)
+            {
+                base.TurnOn(pin);
+            }
         }
 
     }
