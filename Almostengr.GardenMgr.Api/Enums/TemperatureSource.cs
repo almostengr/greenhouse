@@ -1,4 +1,4 @@
-namespace Almostengr.GardenMgr.Common.Enums
+namespace Almostengr.GardenMgr.Api.Enums
 {
     public enum TemperatureSource
     {

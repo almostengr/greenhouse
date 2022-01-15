@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Common.Models;
-using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
-using Almostengr.GardenMgr.WeatherStation.Models;
-using Almostengr.GardenMgr.WeatherStation.Repository.Interface;
-using Almostengr.GardenMgr.WeatherStation.Services.Interface;
+using Almostengr.GardenMgr.Api.Models;
+using Almostengr.GardenMgr.Api.DataTransferObjects;
+using Almostengr.GardenMgr.Api.Database;
+using Almostengr.GardenMgr.Api.Services.Interface;
 using Microsoft.Extensions.Logging;
 
-namespace Almostengr.GardenMgr.WeatherStation.Services
+namespace Almostengr.GardenMgr.Api.Services
 {
     public class ObservationService : BaseService, IObservationService
     {

@@ -1,8 +1,6 @@
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.WeatherStation.Repository;
-using Almostengr.GardenMgr.WeatherStation.Repository.Interface;
 
-namespace Almostengr.GardenMgr.Common.Database
+namespace Almostengr.GardenMgr.Api.Database
 {
     public abstract class BaseRepository : IBaseRepository
     {

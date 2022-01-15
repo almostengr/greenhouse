@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Common.Database;
-using Almostengr.GardenMgr.Common.Models;
-using Almostengr.GardenMgr.Irrigation.DataTransfer;
-using Almostengr.GardenMgr.Irrigation.Relays;
+using Almostengr.GardenMgr.Api.Database;
+using Almostengr.GardenMgr.Api.Models;
+using Almostengr.GardenMgr.Api.DataTransfer;
+using Almostengr.GardenMgr.Api.Relays;
 using Microsoft.EntityFrameworkCore;
 
-namespace Almostengr.GardenMgr.Irrigation.Database
+namespace Almostengr.GardenMgr.Api.Database
 {
     public class PlantWateringRepository : IPlantWateringRepository
     {

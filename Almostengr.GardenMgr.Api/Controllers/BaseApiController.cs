@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Almostengr.GardenMgr.Irrigation.Controllers
+namespace Almostengr.GardenMgr.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]s")]

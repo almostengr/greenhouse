@@ -1,4 +1,4 @@
-namespace Almostengr.GardenMgr.Irrigation.DataTransferObjects
+namespace Almostengr.GardenMgr.Api.DataTransferObjects
 {
     public class MoistureDto 
     {

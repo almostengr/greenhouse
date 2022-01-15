@@ -1,4 +1,4 @@
-namespace Almostengr.GardenMgr.WeatherStation.Services.Interface
+namespace Almostengr.GardenMgr.Api.Services.Interface
 {
     public interface IBaseService    
     {

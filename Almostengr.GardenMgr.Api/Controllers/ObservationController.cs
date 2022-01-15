@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
-using Almostengr.GardenMgr.WeatherStation.Services.Interface;
+using Almostengr.GardenMgr.Api.DataTransferObjects;
+using Almostengr.GardenMgr.Api.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Almostengr.GardenMgr.WeatherStation.Controllers
+namespace Almostengr.GardenMgr.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]s")]

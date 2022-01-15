@@ -1,6 +1,6 @@
-using Almostengr.GardenMgr.WeatherStation.Services.Interface;
+using Almostengr.GardenMgr.Api.Services.Interface;
 
-namespace Almostengr.GardenMgr.WeatherStation.Services
+namespace Almostengr.GardenMgr.Api.Services
 {
     public abstract class BaseService : IBaseService
     {

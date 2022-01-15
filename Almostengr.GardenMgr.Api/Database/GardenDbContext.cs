@@ -1,8 +1,8 @@
-using Almostengr.GardenMgr.Common.Models;
-// using Almostengr.GardenMgr.WeatherStation.Models;
+using Almostengr.GardenMgr.Api.Models;
+// using Almostengr.GardenMgr.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Almostengr.GardenMgr.Common.Database
+namespace Almostengr.GardenMgr.Api.Database
 {
     public class GardenDbContext : DbContext
     {

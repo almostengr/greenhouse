@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Irrigation.DataTransfer;
-using Almostengr.GardenMgr.Irrigation.Database;
+using Almostengr.GardenMgr.Api.DataTransfer;
+using Almostengr.GardenMgr.Api.Database;
 using Almostengr.Common.Twitter.Services;
 using System;
 using Microsoft.Extensions.Logging;
-using Almostengr.GardenMgr.Irrigation.Relays;
-using Almostengr.GardenMgr.Common;
+using Almostengr.GardenMgr.Api.Relays;
+using Almostengr.GardenMgr.Api;
 
-namespace Almostengr.GardenMgr.Irrigation.Services
+namespace Almostengr.GardenMgr.Api.Services
 {
     public class PlantWateringService : IPlantWateringService
     {

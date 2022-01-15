@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Common.Models;
-using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
+using Almostengr.GardenMgr.Api.Models;
+using Almostengr.GardenMgr.Api.DataTransferObjects;
 
-namespace Almostengr.GardenMgr.WeatherStation.Repository.Interface
+namespace Almostengr.GardenMgr.Api.Database
 {
     public interface IObservationRepository : IBaseRepository
     {

@@ -1,6 +1,6 @@
-using Almostengr.GardenMgr.Common.Models;
+using Almostengr.GardenMgr.Api.Models;
 
-namespace Almostengr.GardenMgr.WeatherStation.DataTransferObjects
+namespace Almostengr.GardenMgr.Api.DataTransferObjects
 {
     public static class DtoExtensions
     {

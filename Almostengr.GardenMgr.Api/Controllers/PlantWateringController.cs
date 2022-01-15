@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Irrigation.Services;
+using Almostengr.GardenMgr.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Almostengr.GardenMgr.Irrigation.Controllers
+namespace Almostengr.GardenMgr.Api.Controllers
 {
     public class PlantWateringController : BaseApiController
     {

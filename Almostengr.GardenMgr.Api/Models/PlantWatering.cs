@@ -1,6 +1,6 @@
 using System;
 
-namespace Almostengr.GardenMgr.Common.Models
+namespace Almostengr.GardenMgr.Api.Models
 {
     public class PlantWatering : ModelBase
     {

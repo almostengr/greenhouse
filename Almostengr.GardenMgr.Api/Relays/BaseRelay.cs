@@ -1,6 +1,6 @@
 using System.Device.Gpio;
 
-namespace Almostengr.GardenMgr.Common.Relays
+namespace Almostengr.GardenMgr.Api.Relays
 {
     public abstract class BaseRelay : IBaseRelay
     {

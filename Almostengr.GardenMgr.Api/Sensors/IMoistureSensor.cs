@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Irrigation.DataTransferObjects;
+using Almostengr.GardenMgr.Api.DataTransferObjects;
 
 namespace Almostengr.Greenhouse.Api.Sensors.Interfaces
 {

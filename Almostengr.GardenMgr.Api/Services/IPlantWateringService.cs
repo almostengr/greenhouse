@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Irrigation.DataTransfer;
+using Almostengr.GardenMgr.Api.DataTransfer;
 
-namespace Almostengr.GardenMgr.Irrigation.Services
+namespace Almostengr.GardenMgr.Api.Services
 {
     public interface IPlantWateringService
     {

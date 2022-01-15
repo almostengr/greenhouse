@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Almostengr.GardenMgr.WeatherStation.Repository.Interface
+namespace Almostengr.GardenMgr.Api.Database
 {
     public interface IBaseRepository
     {

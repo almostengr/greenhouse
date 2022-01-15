@@ -1,4 +1,4 @@
-namespace Almostengr.GardenMgr.WeatherStation
+namespace Almostengr.GardenMgr.Api
 {
     public class Constants
     {

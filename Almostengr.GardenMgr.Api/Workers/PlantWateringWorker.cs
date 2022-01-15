@@ -2,12 +2,12 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Almostengr.Common.Twitter.Services;
-using Almostengr.GardenMgr.Common;
-using Almostengr.GardenMgr.Common.Workers;
-using Almostengr.GardenMgr.Irrigation.Services;
+using Almostengr.GardenMgr.Api;
+using Almostengr.GardenMgr.Api.Workers;
+using Almostengr.GardenMgr.Api.Services;
 using Microsoft.Extensions.Logging;
 
-namespace Almostengr.GardenMgr.Irrigation.Workers
+namespace Almostengr.GardenMgr.Api.Workers
 {
     public class PlantWateringWorker : BaseWorker
     {

@@ -1,8 +1,8 @@
 using System.Device.Gpio;
-using Almostengr.GardenMgr.Common;
-using Almostengr.GardenMgr.Common.Relays;
+using Almostengr.GardenMgr.Api;
+using Almostengr.GardenMgr.Api.Relays;
 
-namespace Almostengr.GardenMgr.Irrigation.Relays
+namespace Almostengr.GardenMgr.Api.Relays
 {
     public class IrrigationRelay : BaseRelay, IIrrigationRelay
     {

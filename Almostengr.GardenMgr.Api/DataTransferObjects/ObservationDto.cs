@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Almostengr.GardenMgr.Common;
+using Almostengr.GardenMgr.Api;
 
-namespace Almostengr.GardenMgr.WeatherStation.DataTransferObjects
+namespace Almostengr.GardenMgr.Api.DataTransferObjects
 {
     public class ObservationDto : DtoBase
     {

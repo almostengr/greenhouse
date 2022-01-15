@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Almostengr.GardenMgr.Common
+namespace Almostengr.GardenMgr.Api
 {
     public class AppSettings
     {

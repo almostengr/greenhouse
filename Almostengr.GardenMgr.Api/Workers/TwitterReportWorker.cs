@@ -2,14 +2,14 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Almostengr.Common.Twitter.Services;
-using Almostengr.GardenMgr.Common;
-using Almostengr.GardenMgr.Common.Workers;
-using Almostengr.GardenMgr.WeatherStation.Services.Interface;
+using Almostengr.GardenMgr.Api;
+using Almostengr.GardenMgr.Api.Workers;
+using Almostengr.GardenMgr.Api.Services.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Tweetinvi;
 
-namespace Almostengr.GardenMgr.WeatherStation.Workers
+namespace Almostengr.GardenMgr.Api.Workers
 {
     public class TwitterReportWorker : BaseWorker
     {

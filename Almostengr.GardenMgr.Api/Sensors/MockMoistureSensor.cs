@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Irrigation.DataTransferObjects;
+using Almostengr.GardenMgr.Api.DataTransferObjects;
 using Almostengr.Greenhouse.Api.Sensors.Interfaces;
 
 namespace Almostengr.Greenhouse.Api.Sensors.Mock

@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Almostengr.GardenMgr.Common.Models
+namespace Almostengr.GardenMgr.Api.Models
 {
     public class Observation : ModelBase
     {

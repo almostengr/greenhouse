@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
+using Almostengr.GardenMgr.Api.DataTransferObjects;
 
-namespace Almostengr.GardenMgr.WeatherStation.Services.Interface
+namespace Almostengr.GardenMgr.Api.Services.Interface
 {
     public interface IObservationService : IBaseService
     {

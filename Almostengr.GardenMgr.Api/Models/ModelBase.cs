@@ -1,4 +1,4 @@
-namespace Almostengr.GardenMgr.Common.Models
+namespace Almostengr.GardenMgr.Api.Models
 {
     public abstract class ModelBase
     {}
