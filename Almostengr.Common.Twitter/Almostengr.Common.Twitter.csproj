@@ -1,6 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Company>Robinson Handy and Technology Services LLC</Company>
+    <Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(yyyy)) Robinson Handy and Technology Services</Copyright>
+    <Product>Twitter Service</Product>
+    <Authors>Kenny Robinson</Authors>
+    <AssemblyName>Almostengr.Common.Twitter</AssemblyName>
+    <RootNamespace>Almostengr.Common</RootNamespace>
+    <Version>$([System.DateTime]::UtcNow.ToString(yyyy.MM))</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="TweetinviAPI" Version="5.0.4"/>
