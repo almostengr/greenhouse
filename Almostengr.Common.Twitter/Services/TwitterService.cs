@@ -24,14 +24,14 @@ namespace Almostengr.Common.Twitter.Services
             return response.Name;
         }
 
-        public async Task<bool> PostAlarmTweetAsync(List<string> users, string tweet)
+        public async Task<bool> PostAlarmTweetAsync(List<string> users, string tweet, bool testing = false)
         {
             foreach (var user in users)
             {
                 tweet = user + " " + tweet;
             }
 
-            return await PostTweetAsync(tweet);
+            return await PostTweetAsync(tweet, testing);
         }
 
         public async Task<bool> PostTweetAsync(string tweet, bool testing = false)
