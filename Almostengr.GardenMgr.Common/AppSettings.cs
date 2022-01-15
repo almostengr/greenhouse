@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,11 +17,13 @@ namespace Almostengr.GardenMgr.Common
     public class WeatherSettings
     {
         public int ReadSensorInterval { get; set; } = 30;
+        public int RainGaugeGpioNumber { get; set; } = 0;
+        public int TweetInterval { get; set; } = 60;
     }
 
     public class TwitterSettings
     {
-        public int UpdateInterval { get; set; } = 60;
+        public List<string> Users { get; set; } = null;
         public string ConsumerKey { get; set; } = null;
         public string ConsumerSecret { get; set; } = null;
         public string AccessToken { get; set; } = null;
@@ -29,23 +32,23 @@ namespace Almostengr.GardenMgr.Common
 
     public class IrrigationSettings
     {
-        public List<IrrigationZone> Zones { get; set; } = null;
+        public List<IrrigationZoneSettings> Zones { get; set; } = null;
     }
 
-    public class IrrigationZone
+    public class IrrigationZoneSettings
     {
+        [Required]
         public int ZoneId { get; set; }
 
-        [Range(1,27)]
-        public int ValveGpioPin { get; set; }
+        [Range(0, 27)]
+        public int ValveGpioNumber { get; set; } = 0;
 
-        [Range(1,27)]
-        public int SensorGpioPin { get; set; }
+        public double WateringDuration { get; set; } = 5.0;
 
-        [Range(0.5, 120)]
-        public double WateringTime { get; set; } = 5.0;
+        public TimeSpan WateringTime { get; set; } = new TimeSpan(6, 0, 0);
 
-        [Range(0, 120)]
-        public int ReadSensorInterval { get; set; } = 30;
+        [Range(0, 27)]
+        public int PumpGpioNumber { get; set; } = 0;
+        public string Name { get; set; }
     }
 }

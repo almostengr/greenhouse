@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
+using Almostengr.GardenMgr.WeatherStation.DataTransferObjects;
 using Almostengr.GardenMgr.WeatherStation.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Almostengr.GardenMgr.WeatherStation.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]s")]
     public class ObservationController : ControllerBase
@@ -20,7 +20,7 @@ namespace Almostengr.GardenMgr.WeatherStation.Controllers
         [HttpGet("{observationId:int}")]
         public async Task<IActionResult> GetByObservationId(int observationId)
         {
-            var result = await _service.GetByObservationIdAsync(observationId);
+            ObservationDto result = await _service.GetByObservationIdAsync(observationId);
 
             if (result == null)
             {

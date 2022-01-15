@@ -60,7 +60,7 @@ namespace Almostengr.GardenMgr.WeatherStation.Workers
                     _logger.LogError(ex, ex.Message);
                 }
 
-                await Task.Delay(TimeSpan.FromMinutes(_appSettings.Twitter.UpdateInterval), stoppingToken);
+                await Task.Delay(TimeSpan.FromMinutes(_appSettings.Weather.TweetInterval), stoppingToken);
             }
         }
 

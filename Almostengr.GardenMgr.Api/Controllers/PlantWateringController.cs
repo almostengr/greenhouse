@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Irrigation.DataTransfer;
 using Almostengr.GardenMgr.Irrigation.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,22 +33,5 @@ namespace Almostengr.GardenMgr.Irrigation.Controllers
             return Ok(plantWatering);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreatePlantWatering([FromBody] PlantWateringDto plantWateringDto)
-        {
-            if (plantWateringDto == null)
-            {
-                return BadRequest();
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var newPlantWatering = await _plantWateringService.CreatePlantWatering(plantWateringDto);
-
-            return CreatedAtAction(nameof(GetPlantWatering), new { id = newPlantWatering.Id }, newPlantWatering);
-        }
     }
 }

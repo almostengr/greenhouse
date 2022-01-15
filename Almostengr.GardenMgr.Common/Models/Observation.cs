@@ -5,23 +5,6 @@ namespace Almostengr.GardenMgr.Common.Models
 {
     public class Observation : ModelBase
     {
-        public Observation()
-        {}
-
-        // public Observation(ObservationDto observationDto)
-        // {
-        //     if (observationDto == null)
-        //     {
-        //         throw new ArgumentNullException(nameof(observationDto));
-        //     }
-
-        //     ObservationId = observationDto.ObservationId;
-        //     TemperatureC = observationDto.TemperatureC;
-        //     HumidityPct = observationDto.HumidityPct;
-        //     PressureMb = observationDto.PressureMb;
-        //     Created = observationDto.Created;
-        // }
-
         [Key]
         public int ObservationId { get; set; }
 

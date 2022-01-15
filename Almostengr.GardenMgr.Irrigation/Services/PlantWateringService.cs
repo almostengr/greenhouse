@@ -6,6 +6,7 @@ using Almostengr.Common.Twitter.Services;
 using System;
 using Microsoft.Extensions.Logging;
 using Almostengr.GardenMgr.Irrigation.Relays;
+using Almostengr.GardenMgr.Common;
 
 namespace Almostengr.GardenMgr.Irrigation.Services
 {
@@ -15,14 +16,16 @@ namespace Almostengr.GardenMgr.Irrigation.Services
         private readonly ITwitterService _twitterService;
         private readonly ILogger<PlantWateringService> _logger;
         private readonly IIrrigationRelay _irrigationRelay;
+        private readonly AppSettings _appSettings;
 
         public PlantWateringService(IPlantWateringRepository repository, ITwitterService twitterService,
-            ILogger<PlantWateringService> logger, IIrrigationRelay irrigationRelay)
+            ILogger<PlantWateringService> logger, IIrrigationRelay irrigationRelay, AppSettings appSettings)
         {
             _repository = repository;
             _twitterService = twitterService;
             _logger = logger;
             _irrigationRelay = irrigationRelay;
+            _appSettings = appSettings;
         }
 
         public async Task<PlantWateringDto> CreatePlantWatering(PlantWateringDto irrigation)
@@ -40,14 +43,18 @@ namespace Almostengr.GardenMgr.Irrigation.Services
             return await _repository.GetPlantWaterings();
         }
 
-        public Task<int> GetTankWaterLevel()
+        public async Task<bool> IsWaterTankLowOrEmpty()
         {
-            throw new System.NotImplementedException();
-        }
+            int tankWaterLevel = 0;
+            TimeSpan currentTime = DateTime.Now.TimeOfDay;
 
-        public Task<bool> IsSoilWet(object id)
-        {
-            throw new System.NotImplementedException();
+            if ((currentTime.Minutes / 15) == 0 && tankWaterLevel == 0)
+            {
+                await _twitterService.PostAlarmTweetAsync(_appSettings.Twitter.Users, "Water tank is empty.");
+                return true;
+            }
+
+            return false;
         }
 
         public void TurnOffWater(int valveGpioNumber, int pumpGpioNumber)

@@ -37,19 +37,18 @@ namespace Almostengr.GardenMgr.Irrigation.Workers
                 {
                     try
                     {
-                        bool isZoneWet = await _plantWateringService.IsSoilWet(zone.ZoneId);
-                        bool isTimeToWater = (currentTime == zone.WateringTime);
-                        int tankWaterLevel = await _plantWateringService.GetTankWaterLevel();
+                        bool isTimeToWater = (currentTime.Hours == zone.WateringTime.Hours &&
+                                              currentTime.Minutes == zone.WateringTime.Minutes);
+                        bool isWaterTankLowOrEmpty = await _plantWateringService.IsWaterTankLowOrEmpty();
 
-                        if (isTimeToWater == true && tankWaterLevel > 0)
+                        if (isTimeToWater == true && isWaterTankLowOrEmpty == false)
                         {
                             var w = _plantWateringService.WaterPlantsAsync(zone.ZoneId, zone.ValveGpioNumber, zone.PumpGpioNumber, zone.WateringDuration);
                             alarmCount = 0;
                         }
 
-                        if ((currentTime.Minutes/15) == 0 && tankWaterLevel == 0 && alarmCount <= 3)
+                        if (isWaterTankLowOrEmpty && alarmCount <= 3)
                         {
-                            await _twitterService.PostAlarmTweetAsync(_appSettings.Twitter.Users, "Water tank is empty.");
                             alarmCount++;
                         }
                     }

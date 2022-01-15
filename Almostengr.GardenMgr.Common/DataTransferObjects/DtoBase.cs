@@ -1,4 +1,4 @@
-namespace Almostengr.GardenMgr.WeatherStation.DataTransferObjects
+namespace Almostengr.GardenMgr.Common
 {
     public abstract class DtoBase
     {

@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Almostengr.GardenMgr.Common;
 
 namespace Almostengr.GardenMgr.WeatherStation.DataTransferObjects
 {
