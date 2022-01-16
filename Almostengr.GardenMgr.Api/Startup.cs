@@ -2,8 +2,6 @@ using Almostengr.GardenMgr.Api.Database;
 using Almostengr.GardenMgr.Api.Relays;
 using Almostengr.GardenMgr.Api.Services;
 using Almostengr.GardenMgr.Api.Sensors;
-using Almostengr.GardenMgr.Api.Sensors.Interface;
-using Almostengr.GardenMgr.Api.Services.Interface;
 using Almostengr.GardenMgr.Api.Workers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,18 +35,17 @@ namespace Almostengr.GardenMgr.Api
             AppSettings appSettings = Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
             services.AddSingleton(appSettings);
 
-            services.AddScoped<IPlantWateringService, PlantWateringService>();
-            services.AddScoped<IIrrigationRelay, IrrigationRelay>();
-            services.AddScoped<IPlantWateringRepository, PlantWateringRepository>();
-
             // repositories //////////////////////////////////////////////////////////////////////////////////
 
             services.AddDbContext<GardenDbContext>(options => options.UseSqlite($"Data Source={appSettings.DatabaseFile}"));
-
+            services.AddScoped<IPlantWateringService, PlantWateringService>();
+            services.AddScoped<IPlantWateringRelay, PlantWateringRelay>();
+            services.AddScoped<IPlantWateringRepository, PlantWateringRepository>();
             
             // workers ///////////////////////////////////////////////////////////////////////////////////////
 
             services.AddHostedService<ObservationWorker>();
+            services.AddHostedService<PlantWateringWorker>();
 
             if (appSettings.Twitter != null)
             {
@@ -65,20 +62,24 @@ namespace Almostengr.GardenMgr.Api
                             appSettings.Twitter.AccessSecret
                         ));
 
-                    services.AddHostedService<TwitterReportWorker>();
+                    services.AddHostedService<TwitterObservationWorker>();
                 }
             }
+
+            // relays ////////////////////////////////////////////////////////////////////////////////////////
+            
+            // services.AddScoped<IPlantWateringRelay, PlantWateringRelay>();
+            services.AddScoped<IPlantWateringRelay, MockPlantWateringRelay>();
 
             // services //////////////////////////////////////////////////////////////////////////////////////
 
             services.AddScoped<IObservationService, ObservationService>();
+            services.AddScoped<IPlantWateringService, PlantWateringService>();
 
             // sensors ///////////////////////////////////////////////////////////////////////////////////////
 
             // services.AddSingleton<ISensor, Sensor>();
-            services.AddScoped<ISensor, MockSensor>();
-
-            services.AddDbContext<GardenDbContext>(options => options.UseSqlite($"Data Source={appSettings.DatabaseFile}"));
+            services.AddScoped<ITemperatureSensor, MockTemperatureSensor>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -96,6 +97,9 @@ namespace Almostengr.GardenMgr.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Almostengr.GardenMgr.Api v1"));
             }
+            else {
+                app.UseExceptionHandler("/error");
+            }
 
             app.UseHttpsRedirection();
 
@@ -108,5 +112,20 @@ namespace Almostengr.GardenMgr.Api
                 endpoints.MapControllers();
             });
         }
+
+        // perform database updates if any are available
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<PetFeederContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
+        }
+        
     }
 }
