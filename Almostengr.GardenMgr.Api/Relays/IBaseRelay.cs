@@ -1,13 +1,11 @@
-using System.Device.Gpio;
+using Almostengr.GardenMgr.Api.GpioConnection;
 
 namespace Almostengr.GardenMgr.Api.Relays
 {
-    public interface IBaseRelay
+    public interface IBaseRelay : IBaseGpioConnection
     {
         void TurnOn(int pinNumber);
         void TurnOff(int pinNumber);
-        
-        void OpenPin(GpioController gpio, PinMode pinMode, int pin);
-        void ClosePin(GpioController gpio, int pin);
+        void OpenPin(int pin);
     }
 }

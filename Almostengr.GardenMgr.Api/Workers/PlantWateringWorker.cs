@@ -2,8 +2,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Almostengr.Common.Twitter.Services;
-using Almostengr.GardenMgr.Api;
-using Almostengr.GardenMgr.Api.Workers;
 using Almostengr.GardenMgr.Api.Services;
 using Microsoft.Extensions.Logging;
 
@@ -14,7 +12,6 @@ namespace Almostengr.GardenMgr.Api.Workers
         private readonly AppSettings _appSettings;
         private readonly ILogger<BaseWorker> _logger;
         private readonly IPlantWateringService _plantWateringService;
-        private readonly ITwitterService _twitterService;
 
         public PlantWateringWorker(ILogger<BaseWorker> logger, AppSettings appSettings,
             ITwitterService twitterService, IPlantWateringService plantWateringService)
@@ -22,7 +19,28 @@ namespace Almostengr.GardenMgr.Api.Workers
             _appSettings = appSettings;
             _logger = logger;
             _plantWateringService = plantWateringService;
-            _twitterService = twitterService;
+        }
+
+        public override Task StartAsync(CancellationToken cancellationToken)
+        {
+            foreach (var zone in _appSettings.Irrigation.Zones)
+            {
+                _plantWateringService.OpenGpio(zone.WaterGpioNumber);
+                _plantWateringService.OpenGpio(zone.PumpGpioNumber);
+            }
+
+            return base.StartAsync(cancellationToken);
+        }
+
+        public override Task StopAsync(CancellationToken cancellationToken)
+        {
+            foreach (var zone in _appSettings.Irrigation.Zones)
+            {
+                _plantWateringService.CloseGpio(zone.WaterGpioNumber);
+                _plantWateringService.CloseGpio(zone.PumpGpioNumber);
+            }
+
+            return base.StopAsync(cancellationToken);
         }
 
         protected override async Task ExecuteAsync(CancellationToken cancellationToken)
@@ -31,31 +49,34 @@ namespace Almostengr.GardenMgr.Api.Workers
 
             while (!cancellationToken.IsCancellationRequested)
             {
-                TimeSpan currentTime = DateTime.Now.TimeOfDay;
+                DateTime currentDateTime = DateTime.Now;
 
                 foreach (var zone in _appSettings.Irrigation.Zones)
                 {
                     try
                     {
-                        bool isTimeToWater = (currentTime.Hours == zone.WateringTime.Hours &&
-                                              currentTime.Minutes == zone.WateringTime.Minutes);
+                        bool isTimeToWater = ((zone.WateringDays.IndexOf((int)currentDateTime.DayOfWeek) >= 0 ||
+                                                zone.WateringDays.IndexOf(7) >= 0) &&
+                                                currentDateTime.Hour == zone.WateringTime.Hours &&
+                                                currentDateTime.Minute == zone.WateringTime.Minutes);
                         bool isWaterTankLowOrEmpty = await _plantWateringService.IsWaterTankLowOrEmpty();
 
                         if (isTimeToWater == true && isWaterTankLowOrEmpty == false)
                         {
-                            var w = _plantWateringService.WaterPlantsAsync(zone.ZoneId, zone.ValveGpioNumber, zone.PumpGpioNumber, zone.WateringDuration);
+                            var w = _plantWateringService.WaterPlantsAsync(zone.ZoneId, zone.WaterGpioNumber, zone.PumpGpioNumber, zone.WateringDuration);
                             alarmCount = 0;
                         }
 
                         if (isWaterTankLowOrEmpty && alarmCount <= 3)
                         {
                             alarmCount++;
+                            _logger.LogWarning($"Alarm count {alarmCount}");
                         }
                     }
                     catch (Exception ex)
                     {
                         _logger.LogError(ex, ex.Message);
-                        _plantWateringService.TurnOffWater(zone.ValveGpioNumber, zone.PumpGpioNumber);
+                        _plantWateringService.TurnOffWater(zone.WaterGpioNumber, zone.PumpGpioNumber);
                     }
                 }
 

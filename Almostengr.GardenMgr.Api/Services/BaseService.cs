@@ -1,4 +1,4 @@
-using Almostengr.GardenMgr.Api.Services.Interface;
+using Almostengr.GardenMgr.Api.Services;
 
 namespace Almostengr.GardenMgr.Api.Services
 {

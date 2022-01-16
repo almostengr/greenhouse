@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Api.Database;
 using Almostengr.GardenMgr.Api.Models;
 using Almostengr.GardenMgr.Api.DataTransfer;
 using Almostengr.GardenMgr.Api.Relays;
@@ -12,9 +11,9 @@ namespace Almostengr.GardenMgr.Api.Database
     public class PlantWateringRepository : IPlantWateringRepository
     {
         private readonly GardenDbContext _context;
-        private readonly IIrrigationRelay _relay;
+        private readonly IPlantWateringRelay _relay;
 
-        public PlantWateringRepository(GardenDbContext context, IIrrigationRelay relay)
+        public PlantWateringRepository(GardenDbContext context, IPlantWateringRelay relay)
         {
             _context = context;
             _relay = relay;

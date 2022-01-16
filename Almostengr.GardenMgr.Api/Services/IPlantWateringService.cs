@@ -8,9 +8,10 @@ namespace Almostengr.GardenMgr.Api.Services
     {
         Task<List<PlantWateringDto>> GetPlantWaterings();
         Task<PlantWateringDto> GetPlantWatering(int id);
-        // Task<PlantWateringDto> CreatePlantWatering(PlantWateringDto irrigation);
         Task<bool> IsWaterTankLowOrEmpty();
         Task WaterPlantsAsync(int zoneId, int valveGpioNumber, int pumpGpioNumber, double wateringTime);
-        void TurnOffWater(int valveGpioNumber, int pumpGpioNumber);
+        void TurnOffWater(int waterGpioNumber, int pumpGpioNumber);
+        void OpenGpio(int waterGpioNumber);
+        void CloseGpio(int waterGpioNumber);
     }
 }

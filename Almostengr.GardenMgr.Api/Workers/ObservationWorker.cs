@@ -1,10 +1,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Api;
-using Almostengr.GardenMgr.Api.Workers;
-using Almostengr.GardenMgr.Api.Sensors.Interface;
-using Almostengr.GardenMgr.Api.Services.Interface;
+using Almostengr.GardenMgr.Api.Sensors;
+using Almostengr.GardenMgr.Api.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -14,7 +12,7 @@ namespace Almostengr.GardenMgr.Api.Workers
     {
         private readonly AppSettings _appSettings;
         private readonly IObservationService _observationService;
-        private readonly ISensor _sensor;
+        private readonly ITemperatureSensor _tempSensor;
         private readonly ILogger<ObservationWorker> _logger;
 
         public ObservationWorker(AppSettings appSettings, IServiceScopeFactory factory,
@@ -22,7 +20,7 @@ namespace Almostengr.GardenMgr.Api.Workers
         {
             _appSettings = appSettings;
             _observationService = factory.CreateScope().ServiceProvider.GetRequiredService<IObservationService>();
-            _sensor = factory.CreateScope().ServiceProvider.GetRequiredService<ISensor>();
+            _tempSensor = factory.CreateScope().ServiceProvider.GetRequiredService<ITemperatureSensor>();
             _logger = logger;
         }
 
@@ -32,17 +30,18 @@ namespace Almostengr.GardenMgr.Api.Workers
             {
                 try
                 {
-                    var observationDto = await _sensor.GetSensorDataAsync();
+                    var observationDto = await _tempSensor.GetTemperatureDataAsync();
+                    
                     await _observationService.CreateObservationAsync(observationDto);
 
-                    await _observationService.DeleteOldObservationsAsync(_appSettings.RetentionDays);
+                    var o = _observationService.DeleteOldObservationsAsync(_appSettings.RetentionDays);
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, ex.Message);
                 }
 
-                await Task.Delay(TimeSpan.FromMinutes(_appSettings.ReadSensorInterval), stoppingToken);
+                await Task.Delay(TimeSpan.FromMinutes(_appSettings.Weather.ReadTemperatureInterval), stoppingToken);
             }
         }
     }

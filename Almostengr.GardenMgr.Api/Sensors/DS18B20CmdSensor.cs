@@ -2,13 +2,12 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Almostengr.GardenMgr.Api.DataTransferObjects;
-using Almostengr.GardenMgr.Api.Sensors.Interface;
 
 namespace Almostengr.GardenMgr.Api.Sensors
 {
-    public class DS18B20CmdSensor : ISensor
+    public class DS18B20CmdSensor : ITemperatureSensor
     {
-        public Task<ObservationDto> GetSensorDataAsync()
+        public Task<ObservationDto> GetTemperatureDataAsync()
         {
             Process process = new Process()
             {

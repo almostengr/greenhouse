@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Almostengr.GardenMgr.Api.DataTransferObjects;
 
-namespace Almostengr.GardenMgr.Api.Services.Interface
+namespace Almostengr.GardenMgr.Api.Services
 {
     public interface IObservationService : IBaseService
     {

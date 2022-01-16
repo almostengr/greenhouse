@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Almostengr.GardenMgr.Api.Models;
 using Almostengr.GardenMgr.Api.DataTransferObjects;
 using Almostengr.GardenMgr.Api.Database;
-using Almostengr.GardenMgr.Api.Services.Interface;
 using Microsoft.Extensions.Logging;
 
 namespace Almostengr.GardenMgr.Api.Services

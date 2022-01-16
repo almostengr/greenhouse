@@ -2,23 +2,20 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Almostengr.Common.Twitter.Services;
-using Almostengr.GardenMgr.Api;
-using Almostengr.GardenMgr.Api.Workers;
-using Almostengr.GardenMgr.Api.Services.Interface;
+using Almostengr.GardenMgr.Api.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Tweetinvi;
 
 namespace Almostengr.GardenMgr.Api.Workers
 {
-    public class TwitterReportWorker : BaseWorker
+    public class TwitterObservationWorker : BaseWorker
     {
         public readonly AppSettings _appSettings;
         private readonly IObservationService _observationService;
         private readonly ITwitterService _twitterService;
-        private readonly ILogger<TwitterReportWorker> _logger;
+        private readonly ILogger<TwitterObservationWorker> _logger;
 
-        public TwitterReportWorker(AppSettings appSettings, IServiceScopeFactory factory, ILogger<TwitterReportWorker> logger)
+        public TwitterObservationWorker(AppSettings appSettings, IServiceScopeFactory factory, ILogger<TwitterObservationWorker> logger)
         {
             _appSettings = appSettings;
             _observationService = factory.CreateScope().ServiceProvider.GetRequiredService<IObservationService>();

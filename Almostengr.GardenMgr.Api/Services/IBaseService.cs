@@ -1,4 +1,4 @@
-namespace Almostengr.GardenMgr.Api.Services.Interface
+namespace Almostengr.GardenMgr.Api.Services
 {
     public interface IBaseService    
     {

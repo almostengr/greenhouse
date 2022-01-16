@@ -6,7 +6,6 @@ using Almostengr.Common.Twitter.Services;
 using System;
 using Microsoft.Extensions.Logging;
 using Almostengr.GardenMgr.Api.Relays;
-using Almostengr.GardenMgr.Api;
 
 namespace Almostengr.GardenMgr.Api.Services
 {
@@ -15,17 +14,27 @@ namespace Almostengr.GardenMgr.Api.Services
         private readonly IPlantWateringRepository _repository;
         private readonly ITwitterService _twitterService;
         private readonly ILogger<PlantWateringService> _logger;
-        private readonly IIrrigationRelay _irrigationRelay;
+        private readonly IPlantWateringRelay _irrigationRelay;
         private readonly AppSettings _appSettings;
 
         public PlantWateringService(IPlantWateringRepository repository, ITwitterService twitterService,
-            ILogger<PlantWateringService> logger, IIrrigationRelay irrigationRelay, AppSettings appSettings)
+            ILogger<PlantWateringService> logger, IPlantWateringRelay irrigationRelay, AppSettings appSettings)
         {
             _repository = repository;
             _twitterService = twitterService;
             _logger = logger;
             _irrigationRelay = irrigationRelay;
             _appSettings = appSettings;
+        }
+
+        public void CloseGpio(int gpioNumber)
+        {
+            _irrigationRelay.CloseGpio(gpioNumber);
+        }
+
+        public void OpenGpio(int gpioNumber)
+        {
+            _irrigationRelay.OpenGpio(gpioNumber);
         }
 
         public async Task<PlantWateringDto> CreatePlantWatering(PlantWateringDto irrigation)
@@ -57,13 +66,12 @@ namespace Almostengr.GardenMgr.Api.Services
             return false;
         }
 
-        public void TurnOffWater(int valveGpioNumber, int pumpGpioNumber)
+        public void TurnOffWater(int waterGpioNumber, int pumpGpioNumber)
         {
-            _irrigationRelay.TurnOffWater(valveGpioNumber);
-            _irrigationRelay.TurnOffPump(pumpGpioNumber);
+            _irrigationRelay.TurnOnWater(waterGpioNumber, pumpGpioNumber);
         }
 
-        public async Task WaterPlantsAsync(int zoneId, int valveGpioNumber, int pumpGpioNumber, double wateringTime)
+        public async Task WaterPlantsAsync(int zoneId, int waterGpioNumber, int pumpGpioNumber, double wateringTime)
         {
             try
             {
@@ -76,12 +84,11 @@ namespace Almostengr.GardenMgr.Api.Services
 
             try
             {
-                _irrigationRelay.TurnOnPump(pumpGpioNumber);
-                _irrigationRelay.TurnOnWater(valveGpioNumber);
+                _irrigationRelay.TurnOnWater(waterGpioNumber, pumpGpioNumber);
 
                 await Task.Delay(TimeSpan.FromMinutes(wateringTime));
 
-                TurnOffWater(valveGpioNumber, pumpGpioNumber);
+                _irrigationRelay.TurnOnWater(waterGpioNumber, pumpGpioNumber);
 
                 PlantWateringDto watering = new PlantWateringDto()
                 {
@@ -92,7 +99,7 @@ namespace Almostengr.GardenMgr.Api.Services
             }
             catch (Exception ex)
             {
-                TurnOffWater(valveGpioNumber, pumpGpioNumber);
+                _irrigationRelay.TurnOnWater(waterGpioNumber, pumpGpioNumber);
                 _logger.LogError(ex, ex.Message);
             }
         }

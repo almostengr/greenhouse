@@ -1,12 +1,13 @@
 using System.Device.Gpio;
+using Almostengr.GardenMgr.Api.GpioConnection;
 
 namespace Almostengr.GardenMgr.Api.Relays
 {
-    public abstract class BaseRelay : IBaseRelay
+    public abstract class BaseRelay : BaseGpioConnection, IBaseRelay
     {
         private readonly GpioController _gpio;
         
-        public BaseRelay(GpioController gpio)
+        public BaseRelay(GpioController gpio) : base(gpio)
         {
             _gpio = gpio;
         }
@@ -21,14 +22,9 @@ namespace Almostengr.GardenMgr.Api.Relays
             _gpio.Write(pinNumber, PinValue.High);
         }
 
-        public void OpenPin(GpioController gpio, PinMode pinMode, int pin)
+        public void OpenPin(int pin)
         {
-            gpio.OpenPin(pin, pinMode);
-        }
-
-        public void ClosePin(GpioController gpio, int pin)
-        {
-            gpio.ClosePin(pin);
+            base.OpenPin(_gpio, PinMode.Output, pin);
         }
 
     }
