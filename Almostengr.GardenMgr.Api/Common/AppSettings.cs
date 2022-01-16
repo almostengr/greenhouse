@@ -6,16 +6,16 @@ namespace Almostengr.GardenMgr.Api
 {
     public class AppSettings
     {
-        public string DatabaseFile { get; set; } = "weather.db";
+        public string DatabaseFile { get; set; } = "/var/tmp/weather.db";
         public int RetentionDays { get; set; } = 1825;
-        public TwitterSettings Twitter { get; set; } = null;
-        public WeatherSettings Weather { get; set; } = null;
-        public IrrigationSettings Irrigation { get; set; } = null;
+        public TwitterSettings Twitter { get; set; } = new();
+        public WeatherSettings Weather { get; set; } = new();
+        public IrrigationSettings Irrigation { get; set; } = new();
     }
 
     public class WeatherSettings
     {
-        public double ReadTemperatureInterval { get; set; } = 0.016; // 30;
+        public double ReadTemperatureInterval { get; set; } = 0.16; // 0.016; // 30;
         public int TweetInterval { get; set; } = 60;
     }
 
@@ -30,7 +30,7 @@ namespace Almostengr.GardenMgr.Api
 
     public class IrrigationSettings
     {
-        public List<IrrigationZoneSettings> Zones { get; set; } = null;
+        public List<IrrigationZoneSettings> Zones { get; set; } = new();
     }
 
     public class IrrigationZoneSettings
