@@ -11,16 +11,26 @@ namespace Almostengr.GardenMgr.Api.GpioConnection
             _gpio = gpio;
         }
 
-        public void OpenPin(GpioController gpio, PinMode pinMode, int pin)
-        {
+        // public void OpenPin(GpioController gpio, PinMode pinMode, int pin)
+        // {
 
-            gpio.OpenPin(pin, pinMode);
+        //     gpio.OpenPin(pin, pinMode);
+        // }
+
+        // public void ClosePin(GpioController gpio, int pin)
+        // {
+
+        //     gpio.ClosePin(pin);
+        // }
+
+        public void OpenPin(PinMode pinMode, int pin)
+        {
+            _gpio.OpenPin(pin, pinMode);
         }
 
-        public void ClosePin(GpioController gpio, int pin)
+        public void ClosePin(int pin)
         {
-
-            gpio.ClosePin(pin);
+            _gpio.ClosePin(pin);
         }
     }
 }
