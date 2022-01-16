@@ -1,6 +1,23 @@
 @model List<ObservationDto>
 
-@foreach(var observationDto in Model)
-{
-    
-}
+<table style="width: 100%;">
+    <tr>
+        <th style="border: 3px solid black;">Observation ID</th>
+        <th style="border: 3px solid black;">Temperature C</th>
+        <th style="border: 3px solid black;">Temperature F</th>
+        <th style="border: 3px solid black;">Humidity</th>
+        <th style="border: 3px solid black;">Pressure</th>
+        <th style="border: 3px solid black;">Observation Date</th>
+    </tr>
+    @foreach (var observationDto in Model)
+    {
+        <tr>
+            <td style="border: 3px solid black; padding: 4px;">@observationDto.ObservationId</td>
+            <td style="border: 3px solid black; padding: 4px;">@observationDto.TemperatureC</td>
+            <td style="border: 3px solid black; padding: 4px;">@observationDto.TemperatureF</td>
+            <td style="border: 3px solid black; padding: 4px;">@observationDto.HumidityPct</td>
+            <td style="border: 3px solid black; padding: 4px;">@observationDto.PressureMb</td>
+            <td style="border: 3px solid black; padding: 4px;">@observationDto.Created</td>
+        </tr>
+    }
+</table>
