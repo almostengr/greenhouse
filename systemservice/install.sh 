@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# download the latest application archive 
+
+# extract the archive
+
+# install the system service 
+
+# start the system service
+
+# start the application
+
+# notify the user that the application has been installed
