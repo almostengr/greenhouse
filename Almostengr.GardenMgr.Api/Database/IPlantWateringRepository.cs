@@ -9,5 +9,6 @@ namespace Almostengr.GardenMgr.Api.Database
         Task<List<PlantWateringDto>> GetPlantWaterings();
         Task<PlantWateringDto> GetPlantWatering(int id);
         Task<PlantWateringDto> CreatePlantWatering(PlantWateringDto plantWateringDto);
+        Task<List<PlantWateringDto>> GetRecentPlantWateringsAsync();
     }
 }

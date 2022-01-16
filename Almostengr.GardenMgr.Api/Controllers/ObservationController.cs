@@ -18,7 +18,7 @@ namespace Almostengr.GardenMgr.Api.Controllers
         }
 
         [HttpGet("{observationId:int}")]
-        public async Task<IActionResult> GetByObservationId(int observationId)
+        public async Task<IActionResult> GetObservationById(int observationId)
         {
             ObservationDto result = await _service.GetByObservationIdAsync(observationId);
 
@@ -41,6 +41,13 @@ namespace Almostengr.GardenMgr.Api.Controllers
         public async Task<IActionResult> GetLatestObservation()
         {
             var result = await _service.GetLatestObservationAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("recent")]
+        public async Task<IActionResult> GetRecentObservations()
+        {
+            var result = await _service.GetRecentObservationsAsync();
             return Ok(result);
         }
 

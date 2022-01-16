@@ -14,5 +14,6 @@ namespace Almostengr.GardenMgr.Api.Database
         Task<ObservationDto> GetLatestObservationAsync();
         void DeleteObservations(List<Observation> observations);
         Task<List<Observation>> GetObservationsOlderThanDate(DateTime date);
+        Task<List<ObservationDto>> GetRecentObservationsAsync();
     }
 }

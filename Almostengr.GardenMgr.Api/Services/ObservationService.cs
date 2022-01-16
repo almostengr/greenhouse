@@ -83,5 +83,10 @@ namespace Almostengr.GardenMgr.Api.Services
         {
             return await _repository.GetLatestObservationAsync();
         }
+
+        public async Task<List<ObservationDto>> GetRecentObservationsAsync()
+        {
+            return await _repository.GetRecentObservationsAsync();
+        }
     }
 }

@@ -6,6 +6,7 @@ using Almostengr.Common.Twitter.Services;
 using System;
 using Microsoft.Extensions.Logging;
 using Almostengr.GardenMgr.Api.Relays;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Almostengr.GardenMgr.Api.Services
 {
@@ -17,11 +18,12 @@ namespace Almostengr.GardenMgr.Api.Services
         private readonly IPlantWateringRelay _irrigationRelay;
         private readonly AppSettings _appSettings;
 
-        public PlantWateringService(IPlantWateringRepository repository, ITwitterService twitterService,
-            ILogger<PlantWateringService> logger, IPlantWateringRelay irrigationRelay, AppSettings appSettings)
+        public PlantWateringService(IPlantWateringRepository repository, 
+            ILogger<PlantWateringService> logger, IPlantWateringRelay irrigationRelay, AppSettings appSettings,
+            IServiceScopeFactory factory)
         {
             _repository = repository;
-            _twitterService = twitterService;
+            _twitterService = factory.CreateScope().ServiceProvider.GetRequiredService<ITwitterService>();
             _logger = logger;
             _irrigationRelay = irrigationRelay;
             _appSettings = appSettings;
@@ -50,6 +52,11 @@ namespace Almostengr.GardenMgr.Api.Services
         public async Task<List<PlantWateringDto>> GetPlantWaterings()
         {
             return await _repository.GetPlantWaterings();
+        }
+
+        public async Task<List<PlantWateringDto>> GetRecentPlantWateringsAsync()
+        {
+            return await _repository.GetRecentPlantWateringsAsync();
         }
 
         public async Task<bool> IsWaterTankLowOrEmpty()

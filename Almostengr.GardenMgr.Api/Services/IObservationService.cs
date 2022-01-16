@@ -11,5 +11,6 @@ namespace Almostengr.GardenMgr.Api.Services
         Task<ObservationDto> CreateObservationAsync(ObservationDto observationDto);
         Task<ObservationDto> GetLatestObservationAsync();
         Task DeleteOldObservationsAsync(int retentionDays);
+        Task<List<ObservationDto>> GetRecentObservationsAsync();
     }
 }

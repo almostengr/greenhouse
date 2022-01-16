@@ -33,5 +33,12 @@ namespace Almostengr.GardenMgr.Api.Controllers
             return Ok(plantWatering);
         }
 
+        [HttpGet("recent")]
+        public async Task<IActionResult> GetRecentPlantWaterings()
+        {
+            var plantWaterings = await _plantWateringService.GetRecentPlantWateringsAsync();
+            return Ok(plantWaterings);
+        }
+
     }
 }

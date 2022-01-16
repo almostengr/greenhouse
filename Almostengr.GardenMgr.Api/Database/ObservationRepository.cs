@@ -59,5 +59,14 @@ namespace Almostengr.GardenMgr.Api.Database
                 .Select(o => o.AsDto())
                 .SingleOrDefaultAsync();
         }
+
+        public async Task<List<ObservationDto>> GetRecentObservationsAsync()
+        {
+            return await _dbContext.Observations
+                .Where(o => o.Created > DateTime.Now.AddDays(-7))
+                .OrderByDescending(o => o.Created)
+                .Select(o => o.AsDto())
+                .ToListAsync();
+        }
     }
 }

@@ -5,6 +5,7 @@ using Almostengr.GardenMgr.Api.Models;
 using Almostengr.GardenMgr.Api.DataTransferObjects;
 using Almostengr.GardenMgr.Api.Relays;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Almostengr.GardenMgr.Api.Database
 {
@@ -42,6 +43,15 @@ namespace Almostengr.GardenMgr.Api.Database
             await _context.SaveChangesAsync();
             
             return new PlantWateringDto(plantWatering);
+        }
+
+        public async Task<List<PlantWateringDto>> GetRecentPlantWateringsAsync()
+        {
+            return await _context.PlantWaterings
+                .Where(o => o.Created > DateTime.Now.AddDays(-7))
+                .OrderByDescending(i => i.Created)
+                .Select(i => new PlantWateringDto(i))
+                .ToListAsync();
         }
     }
 }

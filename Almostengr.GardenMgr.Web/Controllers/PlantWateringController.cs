@@ -1,29 +1,40 @@
-using System.Net.Http;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Almostengr.GardenMgr.Api.DataTransferObjects;
+using Almostengr.GardenMgr.Web.ServiceClients;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Almostengr.GardenMgr.Web.Controllers
 {
     public class PlantWateringController : BaseController
     {
-        public PlantWateringController(HttpClient httpClient, AppSettings appSettings) : base(httpClient, appSettings)
+        private readonly IPlantWateringServiceClient _serviceClient;
+
+        public PlantWateringController(IPlantWateringServiceClient serviceClient)
         {
+            _serviceClient = serviceClient;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var result = await _httpClient.GetAsync("api/plantwatering");
+            List<PlantWateringDto> result = await _serviceClient.GetRecentAsync();
             return View("Index", result);
         }
 
         [HttpGet]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _httpClient.GetAsync($"api/plantwatering/{id}");
+            PlantWateringDto result = await _serviceClient.GetAsync(id);
             return View("PlantWatering", result);
         }
 
-        
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            List<PlantWateringDto> result = await _serviceClient.GetAllAsync();
+            return View("Index", result);
+        }
+
     }
 }

@@ -5,7 +5,8 @@ namespace Almostengr.GardenMgr.Api.Controllers
 {
     public interface IObservationController : IBaseController
     {
-        // Task<IActionResult> GetAllObservationsAsync();
-        // Task<IActionResult> GetObservationByIdAsync(int id);
+        // Task<IActionResult> GetAllObservations();
+        // Task<IActionResult> GetObservationById(int id);
+        // Task<IActionResult> GetRecentObservations();
     }
 }

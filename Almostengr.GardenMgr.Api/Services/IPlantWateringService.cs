@@ -13,5 +13,6 @@ namespace Almostengr.GardenMgr.Api.Services
         void TurnOffWater(int waterGpioNumber, int pumpGpioNumber);
         void OpenGpio(int waterGpioNumber);
         void CloseGpio(int waterGpioNumber);
+        Task<List<PlantWateringDto>> GetRecentPlantWateringsAsync();
     }
 }
