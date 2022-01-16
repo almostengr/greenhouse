@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Tweetinvi;
+using Almostengr.Common.Twitter.Services;
 
 namespace Almostengr.GardenMgr.Api
 {
@@ -33,19 +34,27 @@ namespace Almostengr.GardenMgr.Api
             });
 
             AppSettings appSettings = Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
+
+            if (appSettings == null)
+            {
+                appSettings = new AppSettings();
+            }
+            
             services.AddSingleton(appSettings);
 
-            // repositories //////////////////////////////////////////////////////////////////////////////////
-
             services.AddDbContext<GardenDbContext>(options => options.UseSqlite($"Data Source={appSettings.DatabaseFile}"));
-            services.AddScoped<IPlantWateringService, PlantWateringService>();
-            services.AddScoped<IPlantWateringRelay, PlantWateringRelay>();
-            services.AddScoped<IPlantWateringRepository, PlantWateringRepository>();
             
-            // workers ///////////////////////////////////////////////////////////////////////////////////////
-
+            services.AddScoped<ITemperatureSensor, MockTemperatureSensor>();
+            services.AddScoped<IObservationRepository, ObservationRepository>();
+            services.AddScoped<IObservationService, ObservationService>();
             services.AddHostedService<ObservationWorker>();
+
+            services.AddScoped<IPlantWateringRelay, MockPlantWateringRelay>();
+            services.AddScoped<IPlantWateringRepository, PlantWateringRepository>();
+            services.AddScoped<IPlantWateringService, PlantWateringService>();
             services.AddHostedService<PlantWateringWorker>();
+            
+            services.AddSingleton<ITwitterService, MockTwitterService>();
 
             if (appSettings.Twitter != null)
             {
@@ -66,21 +75,6 @@ namespace Almostengr.GardenMgr.Api
                 }
             }
 
-            // relays ////////////////////////////////////////////////////////////////////////////////////////
-            
-            // services.AddScoped<IPlantWateringRelay, PlantWateringRelay>();
-            services.AddScoped<IPlantWateringRelay, MockPlantWateringRelay>();
-
-            // services //////////////////////////////////////////////////////////////////////////////////////
-
-            services.AddScoped<IObservationService, ObservationService>();
-            services.AddScoped<IPlantWateringService, PlantWateringService>();
-
-            // sensors ///////////////////////////////////////////////////////////////////////////////////////
-
-            // services.AddSingleton<ISensor, Sensor>();
-            services.AddScoped<ITemperatureSensor, MockTemperatureSensor>();
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -100,6 +94,8 @@ namespace Almostengr.GardenMgr.Api
             else {
                 app.UseExceptionHandler("/error");
             }
+
+            UpdateDatabase(app);
 
             app.UseHttpsRedirection();
 
