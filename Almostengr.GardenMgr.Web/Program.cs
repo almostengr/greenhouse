@@ -15,7 +15,7 @@ namespace Almostengr.GardenMgr.Web
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
-                        .UseUrls("http://*:80");
+                        .UseUrls("http://*:8081");
                 });
     }
 }
