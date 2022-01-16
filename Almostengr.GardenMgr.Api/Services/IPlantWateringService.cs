@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Api.DataTransfer;
+using Almostengr.GardenMgr.Api.DataTransferObjects;
 
 namespace Almostengr.GardenMgr.Api.Services
 {

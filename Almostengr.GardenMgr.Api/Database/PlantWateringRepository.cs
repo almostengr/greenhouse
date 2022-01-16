@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Almostengr.GardenMgr.Api.Models;
-using Almostengr.GardenMgr.Api.DataTransfer;
+using Almostengr.GardenMgr.Api.DataTransferObjects;
 using Almostengr.GardenMgr.Api.Relays;
 using Microsoft.EntityFrameworkCore;
 

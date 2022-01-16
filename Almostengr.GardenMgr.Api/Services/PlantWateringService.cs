@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Almostengr.GardenMgr.Api.DataTransfer;
+using Almostengr.GardenMgr.Api.DataTransferObjects;
 using Almostengr.GardenMgr.Api.Database;
 using Almostengr.Common.Twitter.Services;
 using System;
