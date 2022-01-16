@@ -1,16 +1,15 @@
 using System;
 using System.Threading.Tasks;
 using Almostengr.GardenMgr.Api.DataTransferObjects;
-using Almostengr.GardenMgr.Api.Sensors.Interface;
 
 namespace Almostengr.GardenMgr.Api.Sensors
 {
-    public class MockSensor : ISensor
+    public class MockTemperatureSensor : ITemperatureSensor
     {
-        public async Task<ObservationDto> GetSensorDataAsync()
+        public async Task<ObservationDto> GetTemperatureDataAsync()
         {
             Random random = new();
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            await Task.Delay(TimeSpan.FromSeconds(0.5));
 
             return new ObservationDto
             {
