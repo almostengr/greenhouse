@@ -1,0 +1,12 @@
+[Unit]
+Description=Garden Manager
+Documentation=https://thealmostengineer.com/
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/home/pi/greenhouse/Almostengr.GardenMgr.Api
+User=pi
+
+[Install]
+WantedBy=multi-user.target

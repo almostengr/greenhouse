@@ -1,0 +1,19 @@
+@model List<PlantWateringDto>
+
+<table style="width: 100%;">
+    <tr>
+        <th style="border: 3px solid black;">Watering ID</th>
+        <th style="border: 3px solid black;">Zone</th>
+        <th style="border: 3px solid black;">Amount</th>
+        <th style="border: 3px solid black;">Created</th>
+    </tr>
+    @foreach (var plantWateringDto in Model)
+    {
+        <tr>
+            <td style="border: 3px solid black; padding: 4px;">@plantWateringDto.Id</td>
+            <td style="border: 3px solid black; padding: 4px;">@plantWateringDto.ZoneId</td>
+            <td style="border: 3px solid black; padding: 4px;">@plantWateringDto.Amount</td>
+            <td style="border: 3px solid black; padding: 4px;">@plantWateringDto.Created</td>
+        </tr>
+    }
+</table>
