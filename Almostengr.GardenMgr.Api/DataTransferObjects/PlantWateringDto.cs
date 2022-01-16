@@ -12,6 +12,10 @@ namespace Almostengr.GardenMgr.Api.DataTransferObjects
         
         public PlantWateringDto(PlantWatering plantWatering)
         {
+            Id = plantWatering.PlantWateringId;
+            Amount = plantWatering.Amount;
+            ZoneId = plantWatering.ZoneId;
+            Created = plantWatering.Created;
         }
 
         public int Id { get; set; }

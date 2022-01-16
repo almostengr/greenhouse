@@ -9,7 +9,9 @@ namespace Almostengr.GardenMgr.Api.Database
         {
         }
         
-        public DbSet<PlantWatering> PlantWaterings { get; set; }
         public DbSet<Observation> Observations { get; set; }
+        public DbSet<Planting> Plantings { get; set; }
+        public DbSet<PlantType> PlantTypes { get; set; }
+        public DbSet<PlantWatering> PlantWaterings { get; set; }
     }
 }
