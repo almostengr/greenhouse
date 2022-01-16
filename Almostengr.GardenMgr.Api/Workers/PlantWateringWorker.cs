@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Almostengr.Common.Twitter.Services;
 using Almostengr.GardenMgr.Api.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Almostengr.GardenMgr.Api.Workers
@@ -14,11 +15,11 @@ namespace Almostengr.GardenMgr.Api.Workers
         private readonly IPlantWateringService _plantWateringService;
 
         public PlantWateringWorker(ILogger<BaseWorker> logger, AppSettings appSettings,
-            ITwitterService twitterService, IPlantWateringService plantWateringService)
+            IServiceScopeFactory factory)
         {
             _appSettings = appSettings;
             _logger = logger;
-            _plantWateringService = plantWateringService;
+            _plantWateringService = factory.CreateScope().ServiceProvider.GetRequiredService<IPlantWateringService>();
         }
 
         public override Task StartAsync(CancellationToken cancellationToken)

@@ -1,3 +1,4 @@
+using Almostengr.GardenMgr.Web.ServiceClients;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,16 +26,20 @@ namespace Almostengr.GardenMgr.Web
             });
 
             AppSettings appSettings = Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
+
+            if (appSettings == null)
+            {
+                appSettings = new AppSettings();
+            }
+
             services.AddSingleton(appSettings);
 
             services.AddControllersWithViews();
 
-            // services.AddHttpClient<ApiClient>(
-            //     client =>
-            //     {
-            //         client.BaseAddress = new Uri(appSettings.ApiUrl);
-            //     }
-            // );
+            services.AddHttpClient();
+
+            services.AddScoped<IPlantWateringServiceClient, PlantWateringServiceClient>();
+            services.AddScoped<IObservationServiceClient, ObservationServiceClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
