@@ -120,12 +120,12 @@ namespace Almostengr.GardenMgr.Api
                 .GetRequiredService<IServiceScopeFactory>()
                 .CreateScope())
             {
-                using (var context = serviceScope.ServiceProvider.GetService<PetFeederContext>())
+                using (var context = serviceScope.ServiceProvider.GetService<GardenDbContext>())
                 {
                     context.Database.Migrate();
                 }
             }
         }
-        
+
     }
 }

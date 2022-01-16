@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Almostengr.GardenMgr.Api.DataTransferObjects;
-using Almostengr.GardenMgr.Api.Services.Interface;
+using Almostengr.GardenMgr.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
