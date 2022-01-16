@@ -24,7 +24,7 @@ namespace Almostengr.GardenMgr.Api.Relays
 
         public void OpenPin(int pin)
         {
-            base.OpenPin(_gpio, PinMode.Output, pin);
+            base.OpenPin(PinMode.Output, pin);
         }
 
     }

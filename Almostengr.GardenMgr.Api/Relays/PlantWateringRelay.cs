@@ -24,12 +24,12 @@ namespace Almostengr.GardenMgr.Api.Relays
 
         public void CloseGpio(int gpioNumber)
         {
-            base.ClosePin(_gpio, gpioNumber);
+            base.ClosePin(gpioNumber);
         }
 
         public void OpenGpio(int gpioNumber)
         {
-            base.OpenPin(_gpio, PinMode.Output, gpioNumber);
+            base.OpenPin(PinMode.Output, gpioNumber);
         }
 
         public void TurnOffWater(int waterGpioNumber, int pumpGpioNumber)

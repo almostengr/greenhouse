@@ -12,7 +12,7 @@ namespace Almostengr.GardenMgr.Api.Relays
             _logger = logger;
         }
 
-        public void ClosePin(GpioController gpio, int gpioNumber)
+        public void ClosePin( int gpioNumber)
         {
             _logger.LogInformation($"Closing GPIO {gpioNumber}");
         }
@@ -22,7 +22,7 @@ namespace Almostengr.GardenMgr.Api.Relays
             _logger.LogInformation($"Opening GPIO {pin}");
         }
 
-        public void OpenPin(GpioController gpio, PinMode pinMode, int gpioNumber)
+        public void OpenPin(PinMode pinMode, int gpioNumber)
         {
             _logger.LogInformation($"Opening GPIO {gpioNumber}");
         }
