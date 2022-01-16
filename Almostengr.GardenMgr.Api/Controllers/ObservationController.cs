@@ -8,7 +8,7 @@ namespace Almostengr.GardenMgr.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]s")]
-    public class ObservationController : ControllerBase
+    public class ObservationController : ControllerBase, IObservationController
     {
         private readonly IObservationService _service;
 
