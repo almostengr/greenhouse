@@ -1,9 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Almostengr.GardenMgr.Api;
 using Almostengr.GardenMgr.Api.Models;
 
-namespace Almostengr.GardenMgr.Api.DataTransfer
+namespace Almostengr.GardenMgr.Api.DataTransferObjects
 {
     public class PlantWateringDto : DtoBase
     {
