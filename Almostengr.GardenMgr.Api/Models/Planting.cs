@@ -18,6 +18,7 @@ namespace Almostengr.GardenMgr.Api.Models
         public DateTime DatePlanted { get; set; }
         public DateTime DateHarvested { get; set; }
         public bool IsFrostTolerant { get; set; }
+        public DateTime MaturityDate { get; set; }
         public int MaturityDays { get; set; }
         public string Notes { get; set; }
         public DateTime Created { get; set; }

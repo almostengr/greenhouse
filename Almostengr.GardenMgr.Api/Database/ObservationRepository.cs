@@ -68,5 +68,14 @@ namespace Almostengr.GardenMgr.Api.Database
                 .Select(o => o.AsDto())
                 .ToListAsync();
         }
+
+        public async Task<List<ObservationDto>> GetObservationsBelowFreezingAsync()
+        {
+            return await _dbContext.Observations
+                .Where(o => o.TemperatureC <= 0 && o.Created >= DateTime.Now.AddDays(-1))
+                .Select(o => o.AsDto())
+                .ToListAsync();
+        }
+        
     }
 }

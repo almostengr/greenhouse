@@ -1,4 +1,5 @@
 using System;
+using Almostengr.GardenMgr.Api.Enums;
 using Almostengr.GardenMgr.Api.Models;
 
 namespace Almostengr.GardenMgr.Api.DataTransferObjects
@@ -9,27 +10,29 @@ namespace Almostengr.GardenMgr.Api.DataTransferObjects
         {
             PlantingId = planting.PlantingId;
             PlantTypeId = (int)planting.PlantType.PlantTypeId;
-            PlantingStatusId = (int)planting.PlantingStatus;
+            PlantingStatusId = planting.PlantingStatus;
             ZoneId = planting.ZoneId;
             DatePlanted = planting.DatePlanted;
             DateHarvested = planting.DateHarvested;
             IsFrostTolerant = planting.IsFrostTolerant;
+            MaturityDate = planting.MaturityDate;
             MaturityDays = planting.MaturityDays;
             Notes = planting.Notes;
             Created = planting.Created;
             Modified = planting.Modified;
         }
 
-        public int PlantingId { get; internal set; }
-        public int PlantTypeId { get; internal set; }
-        public int PlantingStatusId { get; internal set; }
-        public int ZoneId { get; internal set; }
-        public DateTime DatePlanted { get; internal set; }
-        public DateTime DateHarvested { get; internal set; }
-        public bool IsFrostTolerant { get; internal set; }
-        public int MaturityDays { get; internal set; }
-        public string Notes { get; internal set; }
-        public DateTime Created { get; internal set; }
-        public DateTime Modified { get; internal set; }
+        public int PlantingId { get; set; }
+        public int PlantTypeId { get; set; }
+        public PlantingStatus PlantingStatusId { get; set; }
+        public int ZoneId { get; set; }
+        public DateTime DatePlanted { get; set; }
+        public DateTime DateHarvested { get; set; }
+        public bool IsFrostTolerant { get; set; }
+        public DateTime MaturityDate { get; set; }
+        public int MaturityDays { get; set; }
+        public string Notes { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Modified { get; set; }
     }
 }

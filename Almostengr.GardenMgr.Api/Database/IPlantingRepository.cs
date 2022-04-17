@@ -11,5 +11,7 @@ namespace Almostengr.GardenMgr.Api.Database
         Task<List<PlantingDto>> GetPlantingsAsync();
         Task<PlantingDto> UpdatePlantingAsync(PlantingDto plantingDto);
         Task<List<PlantingDto>> GetActivePlantingsAsync();
+        Task<List<PlantingDto>> GetActivePlantingsNotFrostTolerantAsync();
+        Task<List<PlantingDto>> GetPlantingsForHarvestUpdateAsync();
     }
 }

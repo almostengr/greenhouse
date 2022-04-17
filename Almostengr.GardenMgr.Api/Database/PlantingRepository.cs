@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Almostengr.GardenMgr.Api.DataTransferObjects;
 using Almostengr.GardenMgr.Api.Enums;
-using Almostengr.GardenMgr.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Almostengr.GardenMgr.Api.Database
@@ -52,11 +52,32 @@ namespace Almostengr.GardenMgr.Api.Database
         public async Task<List<PlantingDto>> GetActivePlantingsAsync()
         {
             return await _dbContext.Plantings
-                .Where(p => p.PlantingStatus == PlantingStatus.Seedling || 
-                    p.PlantingStatus == PlantingStatus.Planted || 
+                .Where(p => p.PlantingStatus == PlantingStatus.Seedling ||
+                    p.PlantingStatus == PlantingStatus.Planted ||
                     p.PlantingStatus == PlantingStatus.ReadyToHarvest)
                 .Select(p => new PlantingDto(p))
                 .ToListAsync();
         }
+
+        public async Task<List<PlantingDto>> GetPlantingsForHarvestUpdateAsync()
+        {
+            return await _dbContext.Plantings
+                .Where(p => (p.PlantingStatus == PlantingStatus.Seedling || p.PlantingStatus == PlantingStatus.Planted)
+                    && p.MaturityDate <= DateTime.Now)
+                .Select(p => new PlantingDto(p))
+                .ToListAsync();
+        }
+
+        public async Task<List<PlantingDto>> GetActivePlantingsNotFrostTolerantAsync()
+        {
+            return await _dbContext.Plantings
+                .Where(p => (p.IsFrostTolerant == false) &&
+                    (p.PlantingStatus == PlantingStatus.Seedling ||
+                    p.PlantingStatus == PlantingStatus.Planted ||
+                    p.PlantingStatus == PlantingStatus.ReadyToHarvest))
+                .Select(p => new PlantingDto(p))
+                .ToListAsync();
+        }
+
     }
 }
