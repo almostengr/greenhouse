@@ -1,71 +1,66 @@
-﻿using System.Device.Gpio;
+using System.Device.Gpio;
 
 namespace Almostengr.Greenhouse.Microcontroller;
-static class Program
+
+// climate
+private const int HEATER_RELAY_PIN = 4;
+private const int HEATER_SETPOINT_F = 60;
+private const int COOLING_SETPOINT_F = 85;
+private const int COOLING_RELAY_PIN = 5;
+private const int FAN_RELAY_PIN = 45;
+
+// lighting
+private const int LIGHTING_RELAY_PIN = 7;
+
+// watering
+private const int WATER_PUMP_PIN = 15;
+private const int WATER_TIME = 30000; // 30 seconds
+
+public const int SLEEP_DELAY = 1000;
+private static GpioController gpioController;
+
+
+// initialize
+
+gpioController = new GpioController();
+gpioController.OpenPin(COOLING_RELAY_PIN, PinMode.Output, PinValue.Low);
+gpioController.OpenPin(FAN_RELAY_PIN, PinMode.Output, PinValue.Low);
+gpioController.OpenPin(HEATER_RELAY_PIN, PinMode.Output, PinValue.Low);
+gpioController.OpenPin(LIGHTING_RELAY_PIN, PinMode.Output, PinValue.Low);
+gpioController.OpenPin(WATER_PUMP_PIN, PinMode.Output, PinValue.Low);
+
+
+while (true)
 {
-    // climate
-    private const int HEATER_RELAY_PIN = 4;
-    private const int HEATER_SETPOINT_F = 60;
-    private const int COOLING_SETPOINT_F = 85;
-    private const int COOLING_RELAY_PIN = 5;
-    private const int FAN_RELAY_PIN = 45;
+    // GetTemperatureData
 
-    // lighting
-    private const int LIGHTING_RELAY_PIN = 7;
-    
-    // watering
-    private const int WATER_PUMP_PIN = 15;
-    private const int WATER_TIME = 30000; // 30 seconds
+    // SaveTemperatureData
 
-    public const int SLEEP_DELAY = 1000;
-    private static GpioController gpioController;
+    // CycleCooling
+
+    // CycleHeating
+
+    // cycle fan
 
 
-    static async void Main(string[] args)
-    {
-        // initialize
+    // check moisture level
 
-        gpioController = new GpioController();
-        gpioController.OpenPin(COOLING_RELAY_PIN, PinMode.Output, PinValue.Low);
-        gpioController.OpenPin(FAN_RELAY_PIN, PinMode.Output, PinValue.Low);
-        gpioController.OpenPin(HEATER_RELAY_PIN, PinMode.Output, PinValue.Low);
-        gpioController.OpenPin(LIGHTING_RELAY_PIN, PinMode.Output, PinValue.Low);
-        gpioController.OpenPin(WATER_PUMP_PIN, PinMode.Output, PinValue.Low);
+    // if level is low, turn on pump for 30 seconds
+
+    // turn off pump
 
 
-        while (true)
-        {
-            // GetTemperatureData
+    // check lighting level and time of day
 
-            // SaveTemperatureData
-
-            // CycleCooling
-
-            // CycleHeating
-
-            // cycle fan
+    // turn on or off light per conditions 
 
 
-            // check moisture level
-
-            // if level is low, turn on pump for 30 seconds
-
-            // turn off pump
-
-
-            // check lighting level and time of day
-
-            // turn on or off light per conditions 
-
-
-            // await Task.Delay(TimeSpan.FromMinutes(1));
-            Thread.Sleep(SLEEP_DELAY);
-        }
-
-        Thread.Sleep(Timeout.Infinite);
-
-    } // end main
+    // await Task.Delay(TimeSpan.FromMinutes(1));
+    Thread.Sleep(SLEEP_DELAY);
 }
+
+Thread.Sleep(Timeout.Infinite);
+
 
 
 // https://docs.nanoframework.net/api/index.html
