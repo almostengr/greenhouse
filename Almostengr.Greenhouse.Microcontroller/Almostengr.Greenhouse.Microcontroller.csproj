@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Company>Robinson Handy and Technology Services LLC</Company>
+    <Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(yyyy)) Robinson Handy and Technology Services</Copyright>
+    <Product>Garden Manager</Product>
+    <Authors>Kenny Robinson</Authors>
+    <AssemblyName>Almostengr.Greenhouse.Microcontroller</AssemblyName>
+    <RootNamespace>Almostengr.Greenhouse</RootNamespace>
+    <Version>6.$([System.DateTime]::UtcNow.ToString(yyyy.MM))</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Device.Gpio" Version="2.1.0" />
+  </ItemGroup>
+
+</Project>
