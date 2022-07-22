@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Almostengr.Greenhouse", "src\Almostengr.Greenhouse.csproj", "{3A15CA97-3778-45B3-B40E-A917F9A07CB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Almostengr.Greenhouse", "src\Almostengr.Greenhouse.csproj", "{78ABFF28-F4E3-441B-B3EB-9705A45038B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +14,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3A15CA97-3778-45B3-B40E-A917F9A07CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A15CA97-3778-45B3-B40E-A917F9A07CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A15CA97-3778-45B3-B40E-A917F9A07CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A15CA97-3778-45B3-B40E-A917F9A07CB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78ABFF28-F4E3-441B-B3EB-9705A45038B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78ABFF28-F4E3-441B-B3EB-9705A45038B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78ABFF28-F4E3-441B-B3EB-9705A45038B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78ABFF28-F4E3-441B-B3EB-9705A45038B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
